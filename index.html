@@ -1229,42 +1229,32 @@ footer{padding:25px 6%}
 @media(max-width:760px){.site-footer{padding:32px 7%;grid-template-columns:1fr 1fr;gap:28px 8%}.footer-brand{grid-column:1/-1}}
 @media(max-width:420px){.site-footer{grid-template-columns:1fr;gap:24px}.footer-brand{grid-column:auto}}
 </style><style>
-/* Mirror the hero captions: shared baseline, mono label, lead rule and full-width divider. */
+/* Keep the original caption styling and align it with the left slogan. */
 @media (min-width:641px){
-  .hero-copy .hero-foot{
-    width:100%;
-    box-sizing:border-box;
-    padding-bottom:12px;
-    border-bottom:1px solid #292d28;
-  }
+  .hero-copy .hero-foot{width:auto;padding-bottom:0;border-bottom:0}
   .hero-art .art-label{
     top:auto!important;
     right:0;
-    bottom:6px;
-    left:0;
-    width:100%;
+    bottom:6px!important;
+    left:auto;
+    width:auto;
     transform:none!important;
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    gap:12px;
-    padding:0 0 12px;
+    gap:0;
+    padding:0;
     border:0;
-    border-bottom:1px solid #292d28;
     background:transparent;
-    color:#8c9188;
     box-sizing:border-box;
     font:10.8px var(--mono);
     letter-spacing:1.1px;
   }
-  .hero-art .art-label:before{
-    content:"";
-    display:block;
-    flex:0 0 27px;
-    height:1px;
-    background:var(--yellow);
-  }
-  .hero-art .art-label span{color:var(--yellow);margin-left:0}
+  .hero-art .art-label:before{content:none!important;display:none!important}
+  .hero-art .art-label span{margin-left:12px}
+}
+@media (min-width:1550px){
+  .hero-art .art-label{bottom:-15px!important}
 }
 </style>
 </head>
