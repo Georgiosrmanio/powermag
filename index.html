@@ -1430,6 +1430,8 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 const products=window.powerMagProducts;
 let selected=null,activeFilter="all",currentPage=1,sortMode="popular",cart=loadCart(),detailQuantity=1;
 const cartDialog=document.querySelector("#cart-dialog");
+const pDialog=document.querySelector("#product-dialog");
+const aDialog=document.querySelector("#application-dialog");
 const pageSize=12;
 function loadCart(){try{const saved=JSON.parse(localStorage.getItem("powermag-cart-v1")||"[]");if(!Array.isArray(saved))return [];const valid=saved.filter(row=>products.some(p=>p.id===row.id));if(valid.length!==saved.length)localStorage.setItem("powermag-cart-v1",JSON.stringify(valid));return valid}catch{return []}}
 function saveCart(){try{localStorage.setItem("powermag-cart-v1",JSON.stringify(cart))}catch{}}
