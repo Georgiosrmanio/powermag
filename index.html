@@ -957,6 +957,30 @@ footer{padding:25px 6%}
   .outro{margin-top:16px;}
 }
 
+
+/* PowerMag category chips — 2026-11-12 */
+.catalog-tools{gap:18px}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filters button{
+  min-height:47px;padding:12px 20px;white-space:nowrap;
+  background:#151a14;border:1px solid #3c4939;border-radius:7px;
+  color:#c9d4c3;font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:.03em;line-height:1.35;
+  transition:background-color .2s,border-color .2s,color .2s,transform .2s,box-shadow .2s;
+}
+.filters button:hover:not(.active){background:#202a1d;color:#ebf9e5;border-color:#79b450;transform:translateY(-1px)}
+.filters button.active,.filters button.active:hover{
+  background:var(--yellow);color:#11180c;border-color:var(--yellow);
+  box-shadow:0 0 0 1px rgba(125,255,0,.14);transform:none;
+}
+.filters button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:760px){
+ .catalog-tools{flex-direction:column;align-items:stretch;gap:13px}
+ .filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;width:100%}
+ .filters button{min-width:0;min-height:46px;padding:12px 9px;font-size:11px;white-space:normal;text-align:center}
+ #product-count{align-self:flex-end}
+}
+@media(max-width:360px){.filters button{font-size:10px;padding:11px 6px}}
 </style>
 </head>
 <body>
@@ -990,7 +1014,7 @@ footer{padding:25px 6%}
 <div class="section-top"><span class="eyebrow">01 / КАТАЛОГ POWERMAG</span><span class="badge"><i class="status-dot"></i> 0 МОДЕЛЕЙ</span></div>
 <div class="catalog-title"><h2>Запас енергії<br/>під час відключень<span class="yellow">.</span></h2><p>Повербанки для гаджетів і UPS для роутера.<br/>Обирай під свої пристрої та потреби.</p></div>
 <div class="catalog-tools"><div aria-label="Фільтр товарів" class="filters" role="group">
-<button class="active" data-filter="all">Усі товари</button><button data-filter="fast">65 Вт</button><button data-filter="magnetic">Магнітні</button><button data-filter="ups">Для роутера · UPS</button>
+<button class="active" data-filter="all" aria-pressed="true">Усі товари</button><button data-filter="fast" aria-pressed="false">Швидка зарядка</button><button data-filter="magnetic" aria-pressed="false">MagSafe</button><button data-filter="accessories" aria-pressed="false">Аксесуари</button>
 </div><span id="product-count">0 товарів</span></div>
 <div class="products" id="product-grid"></div>
 <p class="catalog-note">Каталог наразі порожній. Нові товари з’являться незабаром.</p>
@@ -1020,7 +1044,7 @@ function card(p){return `<article class="product-card"><a class="product-photo" 
 function render(filter="all"){const list=filter==="all"?products:products.filter(p=>p.filter.includes(filter));grid.innerHTML=list.map(card).join("");document.querySelector("#product-count").textContent=`${list.length} товарів`}
 function openProduct(id,updateUrl=true){const p=products.find(x=>x.id===id);if(!p)return;selected=p;if(updateUrl)history.pushState({product:id},"",`?product=${id}`);document.querySelector("#product-detail").innerHTML=`<div class="detail-visual"><img class="detail-image" src="${p.photo}" alt="${p.brand} ${p.name}"></div><div class="detail-copy"><span class="product-brand">${p.brand} / ПОВЕРБАНК</span><h2 id="dialog-title">${p.name}</h2><div class="product-specs"><span>${p.capacity}</span><span>${p.power}</span></div><p>${p.intro}</p><div class="price-note"><strong>${p.price}</strong><span>Залиште контакти — ми зв’яжемося щодо замовлення.</span></div><button class="apply-button" data-apply="${p.id}">Залишити заявку ↗</button><h3>Характеристики</h3><dl class="detail-specs">${p.specs.map(s=>`<div><dt>${s[0]}</dt><dd>${s[1]}</dd></div>`).join("")}</dl></div>`;pDialog.showModal()}
 function openApply(id){selected=products.find(x=>x.id===id);document.querySelector("#application-product").textContent=selected?`${selected.brand} ${selected.name}`:"";document.querySelector("#application-price").textContent=selected?.price||"";document.querySelector("#application-content").hidden=false;document.querySelector("#application-success").hidden=true;document.querySelector("#application-error").textContent="";aDialog.showModal()}
-document.addEventListener("click",e=>{const f=e.target.closest("[data-filter]");if(f){document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("active",b===f));render(f.dataset.filter);return}const ap=e.target.closest("[data-apply]");if(ap){e.preventDefault();openApply(ap.dataset.apply);return}const pr=e.target.closest("[data-product]");if(pr){e.preventDefault();openProduct(pr.dataset.product);return}});
+document.addEventListener("click",e=>{const f=e.target.closest("[data-filter]");if(f){document.querySelectorAll("[data-filter]").forEach(b=>{const on=b===f;b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on))});render(f.dataset.filter);return}const ap=e.target.closest("[data-apply]");if(ap){e.preventDefault();openApply(ap.dataset.apply);return}const pr=e.target.closest("[data-product]");if(pr){e.preventDefault();openProduct(pr.dataset.product);return}});
 document.querySelectorAll(".dialog-close").forEach(b=>b.addEventListener("click",()=>{const d=b.closest("dialog");d.close();if(d===pDialog && new URLSearchParams(location.search).has("product"))history.replaceState({},"",location.pathname+location.hash)}));
 document.querySelector("#application-form").addEventListener("submit",e=>{e.preventDefault();const fd=new FormData(e.currentTarget);if(fd.get("website"))return;const name=String(fd.get("name")||"").trim(),phone=String(fd.get("phone")||"").trim();if(name.length<2||phone.length<7){document.querySelector("#application-error").textContent="Перевір ім’я та номер телефону.";return}document.querySelector("#application-content").hidden=true;document.querySelector("#application-success").hidden=false;e.currentTarget.reset()});
 document.querySelector(".application-done").addEventListener("click",()=>{aDialog.close();document.querySelector("#catalog").scrollIntoView()});
