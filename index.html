@@ -1288,6 +1288,10 @@ footer{padding:25px 6%}
 .product-modal-backdrop{position:fixed;inset:0;background:#000c;backdrop-filter:blur(5px);z-index:9998}
 dialog#product-dialog.product-modal-open{display:block!important;position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);z-index:9999;margin:0;width:min(900px,92vw);max-height:90vh;overflow:auto;box-shadow:0 24px 90px #000b}
 @media(max-width:700px){dialog#product-dialog.product-modal-open{width:calc(100vw - 20px);max-height:calc(100dvh - 20px)}#product-detail{grid-template-columns:1fr;padding:22px;gap:16px}}
+
+/* Keep transparent product cutouts centered in the photo stage */
+.product-image{inset:50% auto auto 50%!important;transform:translate(-50%,-50%)!important}
+.product-photo:hover .product-image{transform:translate(-50%,-50%) scale(1.04)!important}
 </style>
 </head>
 <body>
