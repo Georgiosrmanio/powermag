@@ -981,6 +981,69 @@ footer{padding:25px 6%}
  #product-count{align-self:flex-end}
 }
 @media(max-width:360px){.filters button{font-size:10px;padding:11px 6px}}
+
+/* PowerMag product photos — dark studio with lime light */
+.product-photo{
+  height:auto!important;
+  aspect-ratio:1/1;
+  background:
+    radial-gradient(ellipse at 50% 88%,rgba(125,255,0,.20),transparent 48%),
+    radial-gradient(ellipse at 50% 52%,#30332d 0%,#1b1d19 47%,#101210 78%)!important;
+  isolation:isolate;
+}
+.product-photo:before{
+  content:"";
+  display:block!important;
+  position:absolute;
+  inset:0;
+  width:auto;
+  height:auto;
+  border:0;
+  border-radius:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.76;
+  background:
+    linear-gradient(166deg,transparent 37%,rgba(125,255,0,.03) 42%,rgba(125,255,0,.75) 46%,rgba(125,255,0,.32) 48%,transparent 53%),
+    linear-gradient(14deg,transparent 68%,rgba(125,255,0,.62) 72%,rgba(125,255,0,.17) 74%,transparent 79%),
+    radial-gradient(ellipse at 50% 95%,rgba(125,255,0,.16),transparent 36%);
+  mix-blend-mode:screen;
+}
+.product-image{
+  z-index:0;
+  object-fit:contain!important;
+  mix-blend-mode:multiply;
+  padding:7px;
+  box-sizing:border-box;
+}
+.product-photo:hover .product-image{transform:scale(1.035)}
+.detail-visual{
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 50% 90%,rgba(125,255,0,.2),transparent 45%),
+    radial-gradient(ellipse at 50% 45%,#30332d 0%,#171a17 72%)!important;
+}
+.detail-visual:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(166deg,transparent 38%,rgba(125,255,0,.04) 43%,rgba(125,255,0,.72) 47%,rgba(125,255,0,.25) 49%,transparent 54%);
+  mix-blend-mode:screen;
+}
+.detail-image{
+  position:relative;
+  z-index:1;
+  mix-blend-mode:multiply;
+  padding:18px;
+  box-sizing:border-box;
+}
+@media(max-width:640px){
+  .product-photo{height:auto!important;aspect-ratio:1/1}
+}
+
 </style>
 </head>
 <body>
