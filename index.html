@@ -1159,6 +1159,38 @@ footer{padding:25px 6%}
 @media(max-width:640px){.catalog-motto{margin-top:48px}.catalog-motto-group{gap:16px;padding:12px 14px;font-size:15px}}
 @media(prefers-reduced-motion:reduce){.catalog-motto-track{animation:none}}
 
+
+/* Order steps matching the supplied reference */
+.how.section{
+  padding:40px 2.2% 30px;background-color:#0e100f;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:54px 54px;
+}
+.how.section .section-top{margin:0;display:flex;align-items:center;justify-content:flex-start}
+.how.section .section-top .eyebrow{gap:10px;color:#9da19d;font:10px var(--mono);letter-spacing:1.2px}
+.how.section .section-top .eyebrow strong{color:var(--yellow);font-weight:500}
+.how.section .section-top .eyebrow i{width:25px;height:1px;background:#32352f}
+.how-title{margin:10px 0 24px;color:#f4f4f1;font-size:clamp(40px,4vw,54px);font-weight:800;letter-spacing:-3px;line-height:1}
+.how-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:0}
+.how-grid article{position:relative;min-height:171px;padding:20px 17px 24px;border:1px solid #282b30;border-radius:23px;background:#17181b;overflow:hidden}
+.how-grid article:after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:2px;background:var(--yellow);border-radius:2px}
+.how-card-top{display:flex;align-items:center;justify-content:space-between;min-height:28px}
+.how-card-top svg{width:24px;height:24px;fill:none;stroke:var(--yellow);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.how-card-top span{color:var(--yellow);font:11px var(--mono)}
+.how-grid h3{margin:14px 0 6px;color:#f1f1ef;font-size:clamp(12px,1.14vw,15px);font-weight:800;letter-spacing:-.25px;line-height:1.15}
+.how-grid p{margin:0;color:#aeb0b4;font-size:14px;line-height:1.55}
+@media(max-width:900px){.how-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.how-grid h3{font-size:14px}}
+@media(max-width:640px){
+  .how.section{padding:34px 5% 28px}
+  .how-title{font-size:40px;letter-spacing:-2px;margin:9px 0 19px}
+  .how-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .how-grid article{min-height:185px;padding:16px 13px 22px;border-radius:19px}
+  .how-grid h3{font-size:12px;margin-top:12px}
+  .how-grid p{font-size:12px;line-height:1.5}
+  .how-card-top svg{width:21px;height:21px}
+}
+@media(max-width:360px){.how-grid{grid-template-columns:1fr}.how-grid article{min-height:160px}}
+
 </style>
 </head>
 <body>
@@ -1216,12 +1248,13 @@ footer{padding:25px 6%}
 <p class="catalog-note">Ціну та наявність моделей уточнюйте перед замовленням.</p>
 </section>
 <section class="how section" id="how">
-<div class="section-top"><span class="eyebrow">02 / ПРОСТО Й БЕЗ ЗАЙВИХ КРОКІВ</span><span class="badge">ЯК ЗАМОВИТИ</span></div>
+<div class="section-top"><span class="eyebrow"><strong>02</strong><i></i> ПРОСТО Й БЕЗ ПЕРЕДОПЛАТИ</span></div>
+<h2 class="how-title">ЯК ЗАМОВИТИ</h2>
 <div class="how-grid">
-<article><span>01</span><h3>ОБЕРИ ТОВАР</h3><p>Переглянь характеристики або додай кілька моделей у кошик.</p></article>
-<article><span>02</span><h3>ЗАЛИШ КОНТАКТИ</h3><p>Для оформлення потрібні ім’я та номер телефону.</p></article>
-<article><span>03</span><h3>УТОЧНИ ДЕТАЛІ</h3><p>Менеджер підтвердить наявність, вартість і умови доставки.</p></article>
-<article><span>04</span><h3>ПІДТВЕРДИ ЗАМОВЛЕННЯ</h3><p>Остаточні деталі замовлення узгоджуються з менеджером.</p></article>
+<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 3h2l2.6 12.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H5"/><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/></svg><span>01</span></div><h3>ОБЕРІТЬ ТОВАР</h3><p>Додайте в кошик усе потрібне або натисніть «Купити в 1 клік».</p></article>
+<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></svg><span>02</span></div><h3>ЗАЛИШТЕ КОНТАКТИ</h3><p>Лише ім’я та телефон — це займе пів хвилини.</p></article>
+<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 2a15 15 0 0 0 5.5 5.5L16 13l5 2v4c0 1.1-.9 2-2 2C10.7 21 3 13.3 3 5c0-1.1.9-2 2-2z"/></svg><span>03</span></div><h3>МЕНЕДЖЕР ПЕРЕДЗВОНИТЬ</h3><p>Підтвердить склад замовлення, наявність і вартість доставки.</p></article>
+<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7zM3.5 7.3 12 12l8.5-4.7M12 22V12"/></svg><span>04</span></div><h3>ОТРИМАЙТЕ ПОСИЛКУ</h3><p>Новою поштою по всій Україні. Оплата при отриманні.</p></article>
 </div>
 </section>
 <section class="about section" id="about">
