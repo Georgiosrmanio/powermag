@@ -1402,7 +1402,7 @@ document.querySelector("#application-form").addEventListener("submit",e=>{e.prev
 document.querySelector(".application-done").addEventListener("click",()=>{aDialog.close();document.querySelector("#catalog").scrollIntoView()});
 document.querySelector("#menu").addEventListener("click",()=>document.querySelector("#nav").classList.toggle("open"));
 document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>document.querySelector("#nav").classList.remove("open")));
-document.querySelector("#year").textContent=new Date().getFullYear();
+const yearNode=document.querySelector("#year");if(yearNode)yearNode.textContent=new Date().getFullYear();
 render();const q=new URLSearchParams(location.search).get("product");if(q)openProduct(q,false);
 window.addEventListener("popstate",()=>{const id=new URLSearchParams(location.search).get("product");if(id)openProduct(id,false);else if(pDialog.open)pDialog.close()});
 
