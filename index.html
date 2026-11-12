@@ -1149,6 +1149,16 @@ footer{padding:25px 6%}
   .hero-benefit svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--yellow);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
   .hero-art{grid-row:3}
 }
+
+/* Brand words below the product grid */
+.catalog-motto{width:100vw;margin:72px calc(50% - 50vw) 0;overflow:hidden;border-top:1px solid #292d28;border-bottom:1px solid #292d28;background:#0e100f}
+.catalog-motto-track{display:flex;width:max-content;animation:catalog-motto-scroll 34s linear infinite}
+.catalog-motto-group{display:flex;flex:0 0 auto;align-items:center;gap:26px;padding:13px 22px;color:#c6c8c5;font-size:clamp(18px,2vw,27px);font-weight:800;letter-spacing:.025em;white-space:nowrap}
+.catalog-motto-group i{color:var(--yellow);font-style:normal;font-size:.72em}
+@keyframes catalog-motto-scroll{to{transform:translateX(-50%)}}
+@media(max-width:640px){.catalog-motto{margin-top:48px}.catalog-motto-group{gap:16px;padding:12px 14px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.catalog-motto-track{animation:none}}
+
 </style>
 </head>
 <body>
@@ -1197,6 +1207,12 @@ footer{padding:25px 6%}
 <span id="product-count">0 товарів</span></div>
 <div class="products" id="product-grid"></div>
 <nav class="catalog-pagination" id="catalog-pagination" aria-label="Сторінки каталогу"></nav>
+<div class="catalog-motto" aria-label="Світло, зв’язок, тепло, енергія, спокій">
+<div class="catalog-motto-track" aria-hidden="true">
+  <div class="catalog-motto-group"><span>СВІТЛО</span><i>•</i><span>ЗВ’ЯЗОК</span><i>•</i><span>ТЕПЛО</span><i>•</i><span>ЕНЕРГІЯ</span><i>•</i><span>СПОКІЙ</span><i>•</i></div>
+  <div class="catalog-motto-group"><span>СВІТЛО</span><i>•</i><span>ЗВ’ЯЗОК</span><i>•</i><span>ТЕПЛО</span><i>•</i><span>ЕНЕРГІЯ</span><i>•</i><span>СПОКІЙ</span><i>•</i></div>
+</div>
+</div>
 <p class="catalog-note">Ціну та наявність моделей уточнюйте перед замовленням.</p>
 </section>
 <section class="how section" id="how">
