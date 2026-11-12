@@ -1130,6 +1130,10 @@ footer{padding:25px 6%}
 .empty-catalog{grid-column:1/-1;min-height:235px;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--line)}
 @media(max-width:640px){.empty-catalog{min-height:130px}}
 
+
+/* Align the blackout label with the benefits strip divider. */
+@media(min-width:641px) and (max-width:1549px){.hero-art .art-label{transform:translateY(58px)!important;}}
+@media(min-width:1550px){.hero-art .art-label{transform:translateY(86px)!important;}}
 /* Hero order benefits */
 @media(min-width:641px){
   .hero{height:auto;min-height:640px;grid-template-rows:minmax(640px,auto) auto}
