@@ -1301,6 +1301,55 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 @media(max-width:900px){.hero-benefits{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-catalog-count{justify-content:flex-start}}
 @media(max-width:640px){.hero-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-catalog-count{grid-column:1/-1;min-height:45px;padding-left:0}.catalog-title{align-items:flex-start;flex-direction:column;gap:18px}.catalog-title .sort-control{margin-left:0;white-space:normal}.cart-item{grid-template-columns:minmax(0,1fr) auto}.product-card-top{height:62px}}
 </style>
+
+<style>
+/* PowerMag amber studio treatment for all product images */
+.product-photo,
+.detail-visual {
+  background:
+    radial-gradient(ellipse at 50% 92%, rgba(239, 164, 77, .42) 0%, rgba(239, 164, 77, .13) 24%, transparent 48%),
+    radial-gradient(ellipse at 50% 42%, rgba(168, 107, 52, .22), transparent 57%),
+    linear-gradient(180deg, #1a1713 0%, #11100e 68%, #090a09 100%) !important;
+}
+.product-photo {
+  border-bottom-color: #5c452f !important;
+}
+.product-photo::before {
+  display: block !important;
+  content: "";
+  position: absolute;
+  width: 72%;
+  height: 72%;
+  left: 14%;
+  top: 10%;
+  border: 1px solid rgba(242, 183, 112, .12);
+  border-radius: 50%;
+  box-shadow: 0 0 52px rgba(226, 151, 65, .14);
+  pointer-events: none;
+  z-index: 0;
+}
+.product-photo .product-image,
+.detail-visual .detail-image,
+.detail-thumb img {
+  background: transparent !important;
+  mix-blend-mode: multiply !important;
+  filter: contrast(1.06) brightness(1.08) !important;
+}
+.product-photo .product-image {
+  z-index: 1;
+}
+.detail-visual {
+  isolation: isolate;
+}
+.detail-thumb {
+  background: #211a12 !important;
+  border-color: #705433 !important;
+}
+.detail-thumb.active {
+  border-color: #f0b765 !important;
+}
+</style>
+
 </head>
 <body>
 <header class="site-header">
