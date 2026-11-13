@@ -1160,10 +1160,10 @@ footer{padding:25px 6%}
 /* Brand words below the product grid */
 .catalog-motto{width:100vw;margin:72px calc(50% - 50vw) 0;overflow:hidden;border-top:1px solid #292d28;border-bottom:1px solid #292d28;background:#0e100f}
 .catalog-motto-track{display:flex;width:max-content;animation:catalog-motto-scroll 34s linear infinite}
-.catalog-motto-group{display:flex;flex:0 0 auto;align-items:center;justify-content:space-around;min-width:100vw;box-sizing:border-box;gap:26px;padding:13px 22px;color:#c6c8c5;font-size:clamp(18px,2vw,27px);font-weight:800;letter-spacing:.025em;white-space:nowrap}
+.catalog-motto-group{display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;min-width:100vw;box-sizing:border-box;gap:26px;padding:13px 0;color:#c6c8c5;font-size:clamp(18px,2vw,27px);font-weight:800;letter-spacing:.025em;white-space:nowrap}
 .catalog-motto-group i{color:var(--yellow);font-style:normal;font-size:.72em}
 @keyframes catalog-motto-scroll{to{transform:translateX(-50%)}}
-@media(max-width:640px){.catalog-motto{margin-top:48px}.catalog-motto-group{gap:16px;padding:12px 14px;font-size:15px}}
+@media(max-width:640px){.catalog-motto{margin-top:48px}.catalog-motto-group{justify-content:space-between;gap:16px;padding:12px 0;font-size:15px}}
 @media(prefers-reduced-motion:reduce){.catalog-motto-track{animation:none}}
 
 
