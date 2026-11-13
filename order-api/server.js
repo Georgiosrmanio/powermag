@@ -139,6 +139,31 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+// Temporary setup lookup: log only group IDs, never message text or user data.
+async function logTelegramGroupIdsOnce() {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) return;
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${token}/getUpdates?limit=50`);
+    const payload = await response.json();
+    if (!payload.ok) {
+      console.error("Telegram setup lookup failed", { error_code: payload.error_code || null });
+      return;
+    }
+    const groups = new Map();
+    for (const update of payload.result || []) {
+      const chat = update.message?.chat;
+      if (chat && (chat.type === "group" || chat.type === "supergroup")) {
+        groups.set(String(chat.id), { id: chat.id, title: chat.title || "", type: chat.type });
+      }
+    }
+    console.log("Telegram group ID candidates:", JSON.stringify([...groups.values()]));
+  } catch {
+    console.error("Telegram setup lookup failed");
+  }
+}
+void logTelegramGroupIdsOnce();
+
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`TopCharge order API listening on port ${PORT}`);
 });
