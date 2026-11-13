@@ -1328,6 +1328,12 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
   pointer-events: none;
   z-index: 0;
 }
+.product-photo::before,
+.detail-visual::before {
+  background: radial-gradient(ellipse at 50% 92%, rgba(239, 164, 77, .24), transparent 48%) !important;
+  opacity: 1 !important;
+  mix-blend-mode: screen !important;
+}
 .product-photo .product-image,
 .detail-visual .detail-image,
 .detail-thumb img {
