@@ -53,7 +53,7 @@ async function readJson(req) {
 }
 
 function clean(value, maxLength) {
-  return value.replace(/[\\u0000-\\u001f\\u007f]/g, " ").replace(/\\s+/g, " ").trim().slice(0, maxLength);
+  return value.replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, maxLength);
 }
 
 const server = http.createServer(async (req, res) => {
@@ -96,7 +96,7 @@ const server = http.createServer(async (req, res) => {
 
   const name = typeof data.name === "string" ? clean(data.name, 80) : "";
   const phone = typeof data.phone === "string" ? clean(data.phone, 40) : "";
-  const digits = phone.replace(/\\D/g, "");
+  const digits = phone.replace(/\D/g, "");
   if (name.length < 2 || digits.length < 9) {
     return sendJson(res, 400, { ok: false, code: "invalid_order" }, origin);
   }
@@ -110,15 +110,15 @@ const server = http.createServer(async (req, res) => {
   const message = [
     "🛒 Нова заявка — HOCO DB81",
     "",
-    `Ім’я: ${name}`,
-    `Телефон: ${phone}`,
+    \`Ім’я: \${name}\`,
+    \`Телефон: \${phone}\`,
     "Товар: HOCO DB81 Apollo, 30 000 мА·год, PD 65W",
-    `Ціна: ${PRICE_UAH.toLocaleString("uk-UA")} грн`,
+    \`Ціна: \${PRICE_UAH.toLocaleString("uk-UA")} грн\`,
     "Сайт: https://topenergyua.onrender.com/"
-  ].join("\\n");
+  ].join("\n");
 
   try {
-    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    const response = await fetch(\`https://api.telegram.org/bot\${token}/sendMessage\`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text: message }),
@@ -137,5 +137,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`TopEnergyUA DB81 order API listening on port ${PORT}`);
+  console.log(\`TopEnergyUA DB81 order API listening on port \${PORT}\`);
 });
