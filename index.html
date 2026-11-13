@@ -1392,7 +1392,7 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9h.01M18 15h.01"/></svg><span>Оплата при отриманні</span></div>
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg><span>Без передоплати</span></div>
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 2a15 15 0 0 0 5.5 5.5L16 13l5 2v4c0 1.1-.9 2-2 2C10.7 21 3 13.3 3 5c0-1.1.9-2 2-2z"/></svg><span>Менеджер підтвердить замовлення</span></div>
-  <div class="hero-catalog-count"><strong>2 823 ТОВАРИ В КАТАЛОЗІ</strong></div>
+  <div class="hero-catalog-count"><strong>4 КАТЕГОРІЇ · ТОВАРИ ДОДАМО ЗГОДОМ</strong></div>
 </div>
 <a class="scroll-link" href="#catalog">↓</a>
 </section>
@@ -1401,7 +1401,12 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 <div class="section-top"><span class="eyebrow"><strong>01</strong><i></i> КАТАЛОГ</span></div>
 <div class="catalog-title"><div><h2>ОБЕРІТЬ КАТЕГОРІЮ</h2><p>Знайдіть потрібний формат заряджання — товари додамо окремо.</p></div></div>
 <div class="catalog-tools">
-<div aria-label="Категорії товарів" class="filters" id="product-filters" role="group"></div>
+<div aria-label="Категорії товарів" class="filters" id="product-filters" role="group">
+<button type="button" class="category-card" data-filter="fast-charging"><span class="category-card-top"><span class="category-icon" aria-hidden="true">⚡</span><span class="category-number">01</span></span><strong>Повербанки з швидкою зарядкою</strong><small>Швидке поповнення заряду, коли важлива кожна хвилина</small><span class="category-card-foot">КАТЕГОРІЯ <i>↗</i></span></button>
+<button type="button" class="category-card" data-filter="standard"><span class="category-card-top"><span class="category-icon" aria-hidden="true">🔋</span><span class="category-number">02</span></span><strong>Стандартні повербанки</strong><small>Надійний запас енергії на щодень</small><span class="category-card-foot">КАТЕГОРІЯ <i>↗</i></span></button>
+<button type="button" class="category-card" data-filter="magsafe"><span class="category-card-top"><span class="category-icon" aria-hidden="true">🧲</span><span class="category-number">03</span></span><strong>MagSafe повербанки</strong><small>Магнітне заряджання — зручно й без зайвих дротів</small><span class="category-card-foot">КАТЕГОРІЯ <i>↗</i></span></button>
+<button type="button" class="category-card" data-filter="accessories"><span class="category-card-top"><span class="category-icon" aria-hidden="true">🔌</span><span class="category-number">04</span></span><strong>Аксесуари до повербанків</strong><small>Кабелі та корисні рішення для заряджання</small><span class="category-card-foot">КАТЕГОРІЯ <i>↗</i></span></button>
+</div>
 <label class="product-search"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Пошук товару або бренду" autocomplete="off" aria-label="Пошук товару або бренду"/></label>
 <span id="product-count">Товари скоро з’являться</span></div>
 <div class="products" id="product-grid"></div>
