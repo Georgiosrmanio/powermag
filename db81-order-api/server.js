@@ -110,15 +110,15 @@ const server = http.createServer(async (req, res) => {
   const message = [
     "🛒 Нова заявка — HOCO DB81",
     "",
-    \`Ім’я: \${name}\`,
-    \`Телефон: \${phone}\`,
+    "Ім’я: " + name,
+    "Телефон: " + phone,
     "Товар: HOCO DB81 Apollo, 30 000 мА·год, PD 65W",
-    \`Ціна: \${PRICE_UAH.toLocaleString("uk-UA")} грн\`,
+    "Ціна: " + PRICE_UAH.toLocaleString("uk-UA") + " грн",
     "Сайт: https://topenergyua.onrender.com/"
   ].join("\n");
 
   try {
-    const response = await fetch(\`https://api.telegram.org/bot\${token}/sendMessage\`, {
+    const response = await fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text: message }),
@@ -137,5 +137,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(\`TopEnergyUA DB81 order API listening on port \${PORT}\`);
+  console.log("TopEnergyUA DB81 order API listening on port " + PORT);
 });
