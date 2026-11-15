@@ -1427,6 +1427,13 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 .product-photo .product-image{width:88%!important;height:88%!important;max-width:250px!important;max-height:250px!important}
 .product-photo .photo-fallback{position:relative!important;inset:auto!important;width:58px!important;height:58px!important;display:grid!important;place-items:center!important;filter:none!important;mix-blend-mode:normal!important}
 </style>
+
+<style id="powermag-mobimag-photo-style">
+/* Mobimag originals: blend their white studio backgrounds into the lime-lit stage */
+.product-photo:has(img[src*="mobimag.ua/images"]){background:radial-gradient(ellipse at 52% 88%,rgba(125,255,0,.42),transparent 46%),radial-gradient(ellipse at 50% 46%,#252a20 0%,#141713 60%,#0e100f 100%)!important}
+.product-photo img[src*="mobimag.ua/images"],.detail-visual img[src*="mobimag.ua/images"]{mix-blend-mode:multiply!important;filter:brightness(1.3) contrast(1.13)!important;background:transparent!important;border-radius:0!important}
+.detail-visual:has(img[src*="mobimag.ua/images"]){background:radial-gradient(ellipse at 50% 86%,rgba(125,255,0,.38),transparent 48%),linear-gradient(180deg,#121512,#090b09)!important}
+</style>
 </head>
 <body>
 <header class="site-header">
