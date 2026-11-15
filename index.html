@@ -1429,9 +1429,9 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 </style>
 
 <style id="powermag-mobimag-photo-style">
-/* Mobimag originals: blend their white studio backgrounds into the lime-lit stage */
+/* Key out the white Mobimag studio backdrop and keep the product itself bright */
 .product-photo:has(img[src*="mobimag.ua/images"]){background:radial-gradient(ellipse at 52% 88%,rgba(125,255,0,.42),transparent 46%),radial-gradient(ellipse at 50% 46%,#252a20 0%,#141713 60%,#0e100f 100%)!important}
-.product-photo img[src*="mobimag.ua/images"],.detail-visual img[src*="mobimag.ua/images"]{mix-blend-mode:multiply!important;filter:brightness(1.3) contrast(1.13)!important;background:transparent!important;border-radius:0!important}
+.product-photo img[src*="mobimag.ua/images"],.detail-visual img[src*="mobimag.ua/images"]{mix-blend-mode:normal!important;filter:url(#mobimag-white-key) brightness(1.1) contrast(1.08) drop-shadow(0 20px 19px rgba(0,0,0,.62))!important;background:transparent!important;border-radius:0!important}
 .detail-visual:has(img[src*="mobimag.ua/images"]){background:radial-gradient(ellipse at 50% 86%,rgba(125,255,0,.38),transparent 48%),linear-gradient(180deg,#121512,#090b09)!important}
 </style>
 </head>
@@ -1640,4 +1640,6 @@ renderFilters();render();const q=new URLSearchParams(location.search).get("produ
 window.addEventListener("popstate",()=>{const id=new URLSearchParams(location.search).get("product");if(id)openProduct(id,false);else if(pDialog.open||pDialog.classList.contains("product-modal-open"))closeProductDialog()});
 
 </script>
+
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><filter id="mobimag-white-key" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -.8 -.8 -.8 0 2.4"/></filter></svg>
 </body></html>
