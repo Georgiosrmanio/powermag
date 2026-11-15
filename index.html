@@ -1406,6 +1406,20 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 <style>
 @media(min-width:1501px){.how.section{max-width:1500px;margin-inline:auto}}
 </style>
+<style id="product-image-clarity-fix">
+.product-photo,.detail-visual{
+ background:radial-gradient(ellipse at 50% 90%,rgba(125,255,0,.2),transparent 48%),radial-gradient(ellipse at 50% 45%,#252720 0%,#141612 60%,#0e100f 100%)!important;
+}
+.product-photo .product-image,.detail-visual .detail-image,.detail-thumb img{
+ mix-blend-mode:normal!important;
+ filter:brightness(1.14) contrast(1.04) saturate(1.06) drop-shadow(0 16px 18px rgba(0,0,0,.35))!important;
+}
+.product-photo::before,.detail-visual::before{
+ background:radial-gradient(ellipse at 50% 92%,rgba(125,255,0,.16),transparent 50%)!important;
+ opacity:1!important;
+ mix-blend-mode:screen!important;
+}
+</style>
 </head>
 <body>
 <header class="site-header">
