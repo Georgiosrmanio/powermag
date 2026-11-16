@@ -56,7 +56,7 @@
       phone.value = '+38' + (parts[0] ? ' (' + parts[0] : '') + (parts[1] ? ') ' + parts[1] : '') + (parts[2] ? '-' + parts[2] : '') + (parts[3] ? '-' + parts[3] : '');
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (phone && phone.value.replace(/\D/g, '').length < 12) {
         phone.setCustomValidity('Введіть повний номер телефону');
@@ -64,11 +64,37 @@
         phone.setCustomValidity('');
         return;
       }
+
+      const name = form.querySelector('input[name="name"]')?.value.trim() || '';
+      const button = form.querySelector('button[type="submit"]');
+      const originalButtonText = button?.textContent || 'Замовити';
+      if (button) { button.disabled = true; button.textContent = 'Надсилаємо…'; }
       if (status) {
-        status.textContent = 'Форма ще не підключена до менеджера. Дані не надіслано.';
+        status.textContent = 'Надсилаємо заявку…';
         status.classList.add('is-visible');
       }
-    });
+
+      try {
+        const response = await fetch('https://powershop-fm-orders-api.onrender.com/api/order', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ name, phone: phone?.value || '' })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(result.code || 'order_failed');
+
+        if (status) status.textContent = 'Дякуємо! Заявку надіслано. Менеджер скоро зв’яжеться з вами.';
+        form.reset();
+      } catch (error) {
+        if (status) {
+          status.textContent = error.message === 'not_configured'
+            ? 'Заявки тимчасово не приймаються. Спробуйте пізніше.'
+            : 'Не вдалося надіслати заявку. Перевірте інтернет і спробуйте ще раз.';
+        }
+      } finally {
+        if (button) { button.disabled = false; button.textContent = originalButtonText; }
+      }
+    });;
   });
 
   const countdowns = document.querySelectorAll('[data-countdown]');
