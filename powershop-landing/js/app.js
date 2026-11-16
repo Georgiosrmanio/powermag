@@ -84,6 +84,9 @@
         if (!response.ok || !result.ok) throw new Error(result.code || 'order_failed');
 
         if (status) status.textContent = 'Дякуємо! Заявку надіслано. Менеджер скоро зв’яжеться з вами.';
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Purchase', { value: 579, currency: 'UAH' });
+        }
         form.reset();
       } catch (error) {
         if (status) {
