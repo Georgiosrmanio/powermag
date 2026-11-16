@@ -164,6 +164,7 @@ src="https://www.facebook.com/tr?id=1105417815582000&ev=PageView&noscript=1"
         const formData=new FormData(orderForm);
         const response=await fetch('https://topenergyua-db81-orders-api.onrender.com/api/order',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:formData.get('name'),phone:formData.get('phone')})});
         if(!response.ok)throw new Error('order_failed');
+        if(typeof window.fbq==='function')fbq('track','Purchase',{value:2490,currency:'UAH'});
         formStatus.classList.add('success');
         formStatus.textContent='Дякуємо! Заявку надіслано. Менеджер зв’яжеться з тобою телефоном.';
         orderForm.reset();
