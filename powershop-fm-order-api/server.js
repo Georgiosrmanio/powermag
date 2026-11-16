@@ -107,8 +107,12 @@ const server = http.createServer(async (req, res) => {
       return reply(res, 502, { ok: false, code: "telegram_delivery_failed" }, origin);
     }
     return reply(res, 200, { ok: true }, origin);
-  } catch {
-    console.error("Telegram API request failed");
+  } catch (error) {
+    // Log only safe transport details; never log the bot token or request URL.
+    console.error("Telegram API request failed", {
+      name: typeof error?.name === "string" ? error.name : "Error",
+      code: typeof error?.cause?.code === "string" ? error.cause.code : null
+    });
     return reply(res, 502, { ok: false, code: "telegram_unavailable" }, origin);
   }
 });
