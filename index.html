@@ -1656,7 +1656,7 @@ function renderFilters(){const el=document.querySelector("#product-filters");if(
 function card(p,index=0){
 const specs=[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</span>').join("");
 const photo=(p.photos||[])[0];
-const image=photo?'<img class="product-image" loading="'+(index<4?"eager":"lazy")+'" fetchpriority="'+(index<4?"high":"low")+'" decoding="async" src="'+escHTML(photo)+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>':'<div class="product-image photo-fallback" aria-hidden="true"><span>ϟ</span></div>';
+const image=photo?'<img class="product-image" loading="lazy" fetchpriority="'+(index<4?"high":"low")+'" decoding="async" src="'+escHTML(photo)+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>':'<div class="product-image photo-fallback" aria-hidden="true"><span>ϟ</span></div>';
 const link='<a class="product-card-link" href="?product='+encodeURIComponent(p.id)+'" data-product="'+escHTML(p.id)+'" aria-label="Переглянути '+escHTML(p.title)+'">';
 return '<article class="product-card">'+link+'<div class="product-photo">'+image+'</div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3><p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom"><button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button></div></article>'
 }
