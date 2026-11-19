@@ -1432,6 +1432,62 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 <style id="powermag-mobimag-originals">.product-photo img[src*="mobimag.ua/images"],.detail-visual img[src*="mobimag.ua/images"]{filter:none!important;mix-blend-mode:normal!important}
 /* Align the order cards with the narrower content column shown in the reference. */
 .how.section{padding-left:6.2%;padding-right:6.2%}
+
+/* Rounded, image-forward catalog cards; category labels are omitted from cards. */
+.product-card{
+  border-radius:22px!important;
+  overflow:hidden!important;
+  background:#141617!important;
+  border-color:#292e28!important;
+}
+.product-card-link{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  height:auto!important;
+  flex:1 1 auto!important;
+}
+.product-card-link>.product-photo{
+  width:calc(100% - 16px)!important;
+  margin:8px 8px 0!important;
+  align-self:stretch!important;
+  flex:0 0 auto!important;
+  aspect-ratio:1/1!important;
+  height:auto!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:18px!important;
+}
+.product-card .product-photo .product-image{
+  position:absolute!important;
+  inset:0!important;
+  left:0!important;
+  top:0!important;
+  transform:none!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  border-radius:18px!important;
+  background:#f4f4ef!important;
+}
+.product-card .product-photo:hover .product-image{
+  transform:scale(1.025)!important;
+}
+.product-card .product-label,
+.product-card .photo-arrow{display:none!important}
+@media(max-width:640px){
+  .product-card{border-radius:21px!important}
+  .product-card-link>.product-photo{
+    width:calc(100% - 14px)!important;
+    margin:7px 7px 0!important;
+    border-radius:17px!important;
+  }
+  .product-card .product-photo .product-image{border-radius:17px!important}
+}
 </style>
 </head>
 <body>
@@ -1600,7 +1656,7 @@ const specs=[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</s
 const photo=(p.photos||[])[0];
 const image=photo?'<img class="product-image" loading="lazy" src="'+escHTML(photo)+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>':'<div class="product-image photo-fallback" aria-hidden="true"><span>ϟ</span></div>';
 const link='<a class="product-card-link" href="?product='+encodeURIComponent(p.id)+'" data-product="'+escHTML(p.id)+'" aria-label="Переглянути '+escHTML(p.title)+'">';
-return '<article class="product-card">'+link+'<div class="product-photo">'+image+'<span class="product-label">'+escHTML(categoryLabel(p))+'</span><span class="photo-arrow">↗</span></div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3><p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom"><button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button></div></article>'
+return '<article class="product-card">'+link+'<div class="product-photo">'+image+'</div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3><p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom"><button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button></div></article>'
 }
 function render(){const grid=document.querySelector("#product-grid"),list=filteredProducts(),maxPage=Math.max(1,Math.ceil(list.length/pageSize));currentPage=Math.min(currentPage,maxPage);const start=(currentPage-1)*pageSize;grid.innerHTML=list.length?list.slice(start,start+pageSize).map(card).join(""):(products.length?'<div class="empty-catalog">За цим запитом товарів не знайдено.</div>':'<div class="empty-catalog">Товари в цих розділах з’являться незабаром.</div>');const filters=document.querySelector(".filters"),sortControl=document.querySelector(".sort-control");if(filters)filters.hidden=false;const search=document.querySelector(".product-search");if(search)search.hidden=!products.length;if(sortControl){sortControl.hidden=!products.length;sortControl.style.display=products.length?"":"none"}const searchControl=document.querySelector(".product-search");if(searchControl){searchControl.hidden=!products.length;searchControl.style.display=products.length?"":"none"}const heroCount=document.querySelector(".hero-catalog-count strong");if(heroCount)heroCount.textContent="🛡️ ГАРАНТІЯ НА ВСІ ТОВАРИ — 1 РІК";document.querySelector("#product-count").textContent=products.length?(list.length?"Показано "+(start+1)+"–"+Math.min(start+pageSize,list.length)+" з "+list.length.toLocaleString("uk-UA")+" товарів":"Нічого не знайдено"):"Товари скоро з’являться";const pager=document.querySelector("#catalog-pagination");if(maxPage<2){pager.innerHTML="";return}const wanted=[1,...[currentPage-1,currentPage,currentPage+1].filter(n=>n>1&&n<maxPage),maxPage],pages=[...new Set(wanted)].sort((a,b)=>a-b);let buttons="";for(let i=0;i<pages.length;i++){if(i&&pages[i]-pages[i-1]>1)buttons+='<span class="page-gap">…</span>';const n=pages[i];buttons+='<button type="button" data-page="'+n+'" class="'+(currentPage===n?"active":"")+'" aria-current="'+(currentPage===n?"page":"false")+'">'+n+'</button>'}pager.innerHTML='<button type="button" data-page="'+(currentPage-1)+'" '+(currentPage===1?"disabled":"")+' aria-label="Попередня сторінка">‹</button>'+buttons+'<button type="button" data-page="'+(currentPage+1)+'" '+(currentPage===maxPage?"disabled":"")+' aria-label="Наступна сторінка">›</button>'}function showProductDialog(){const backdrop=document.createElement("div");backdrop.className="product-modal-backdrop";backdrop.addEventListener("click",closeProductDialog);document.body.appendChild(backdrop);pDialog.classList.add("product-modal-open");pDialog.setAttribute("open","");document.body.classList.add("product-modal-visible")}
 function closeProductDialog(){pDialog.classList.remove("product-modal-open");pDialog.removeAttribute("open");document.body.classList.remove("product-modal-visible");document.querySelectorAll(".product-modal-backdrop").forEach(x=>x.remove())}
