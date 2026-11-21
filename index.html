@@ -1625,6 +1625,16 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 #cart-dialog .cart-item-actions{justify-content:flex-end}
 @media(max-width:600px){#cart-dialog .cart-item{grid-template-columns:58px minmax(0,1fr) 28px!important;gap:9px}#cart-dialog .cart-item>img,#cart-dialog .cart-item>.cart-item-photo-empty{width:58px;height:58px}}
 </style>
+
+<style id="compact-product-card-spacing">
+/* Keep product price and cart action close to the product name on every card. */
+.product-card{min-height:0!important;height:auto!important}
+.product-card-link{flex:0 0 auto!important;height:auto!important}
+.product-card-link>.product-info,.product-info{flex:0 0 auto!important}
+.product-bottom{margin:0!important}
+@media(max-width:640px){.product-card{min-height:0!important;height:auto!important}}
+@media(max-width:380px){.product-card{min-height:0!important;height:auto!important}}
+</style>
 </head>
 <body>
 <header class="site-header">
