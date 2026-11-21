@@ -1613,6 +1613,16 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 .db03-gallery-arrow:focus-visible,.db03-zoom:focus-visible,.db03-add:focus-visible,.db03-one-click:focus-visible{outline:2px solid #7dff00!important;outline-offset:2px}
 .db03-extra article>span{color:#7dff00!important}
 </style>
+<style id="cart-photo-layout">
+#cart-dialog .cart-item{grid-template-columns:72px minmax(0,1fr) 30px!important;gap:12px;align-items:center}
+#cart-dialog .cart-item>img,#cart-dialog .cart-item>.cart-item-photo-empty{grid-column:1;grid-row:1;width:72px;height:72px}
+#cart-dialog .cart-item>div:not(.cart-item-photo-empty){grid-column:2;grid-row:1;min-width:0}
+#cart-dialog .cart-item>.cart-remove{grid-column:3;grid-row:1;width:30px;min-width:30px;height:30px;padding:0;border-radius:50%;font-size:0;align-self:start;position:relative}
+#cart-dialog .cart-item>.cart-remove:before{content:"×";font-size:18px;line-height:1}
+#cart-dialog .cart-item h3{line-height:1.35}
+#cart-dialog .cart-item-actions{justify-content:flex-end}
+@media(max-width:600px){#cart-dialog .cart-item{grid-template-columns:58px minmax(0,1fr) 28px!important;gap:9px}#cart-dialog .cart-item>img,#cart-dialog .cart-item>.cart-item-photo-empty{width:58px;height:58px}}
+</style>
 </head>
 <body>
 <header class="site-header">
