@@ -1554,6 +1554,48 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
   .product-bottom .product-add-button{min-width:96px!important}
 }
 </style>
+<style id="db03-product-page-style">
+#product-dialog:has(.db03-detail){width:min(1320px,96vw)!important;max-height:94vh!important;background:#090a0b!important;border:1px solid #292b2e!important;border-radius:22px!important;color:#f4f4ef!important}
+#product-dialog:has(.db03-detail)>.dialog-close{position:sticky;top:10px;float:right;margin:10px 10px -44px 0;background:#191b1e;border:1px solid #373a3e;border-radius:13px;color:#f5f5f2}
+.db03-detail{padding:64px 4.5% 30px!important;display:block!important}
+.db03-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.94fr);column-gap:36px;row-gap:36px;align-items:start}
+.db03-gallery{min-width:0}
+.db03-stage{aspect-ratio:1/1;position:relative;overflow:hidden;border:1px solid #292b2e;border-radius:24px;background:radial-gradient(ellipse at 50% 38%,#28301c 0%,#171913 52%,#101112 100%);display:grid;place-items:center}
+.db03-main-image{width:88%;height:88%;object-fit:contain;filter:drop-shadow(0 20px 24px #000b)}
+.db03-photo-count{position:absolute;top:14px;left:14px;padding:8px 12px;border-radius:12px;background:#0b0c0de8;color:#f4f4ef;font:700 13px var(--mono)}
+.db03-zoom{position:absolute;right:14px;top:14px;width:46px;height:46px;border-radius:15px;border:1px solid #34363a;background:#111214;color:#fff;font-size:25px}
+.db03-gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:1px solid #3a3c3f;border-radius:15px;background:#101112dd;color:#f6f6f3;font-size:28px;line-height:1}
+.db03-gallery-arrow.prev{left:14px}.db03-gallery-arrow.next{right:14px}
+.db03-dots{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.db03-dots button{width:18px;height:4px;border:0;border-radius:4px;background:#72736e;padding:0}
+.db03-dots button.active{width:28px;background:#ffdf00}
+.db03-thumbs{display:flex;gap:9px;margin-top:10px}
+.db03-thumb{width:68px;height:68px;padding:4px;overflow:hidden;border:1px solid #292b2e;border-radius:13px;background:#131517}
+.db03-thumb.active{border-color:#ffdf00}.db03-thumb img{width:100%;height:100%;object-fit:contain}
+.db03-copy{padding-top:14px;min-width:0}
+.db03-capacity{display:inline-flex;padding:7px 11px;border-radius:8px;background:#332d05;color:#ffdf00;font:700 12px var(--mono);letter-spacing:.06em}
+.db03-copy h2{margin:16px 0 13px;color:#f4f4ef;font-size:clamp(32px,3.1vw,48px);line-height:1.02;letter-spacing:-.045em;font-weight:850;text-transform:uppercase}
+.db03-meta{display:flex;gap:18px;flex-wrap:wrap;color:#aeb3b5;font-size:14px}.db03-stock{color:#20e79a;font-weight:700}
+.db03-price{margin:18px 0 14px;padding:15px 18px;border:1px solid #292b2e;border-radius:18px;background:#141619;color:#ffdf00;font-size:clamp(28px,3vw,40px);font-weight:850;letter-spacing:-.04em}
+.db03-description{margin:0 0 18px;color:#d2d5d7;font-size:16px;line-height:1.6}
+.db03-buy-row{display:grid;grid-template-columns:102px minmax(0,1fr);gap:9px}
+.db03-detail .quantity-control{height:54px;justify-content:space-around;gap:0;border:1px solid #3c3f42;border-radius:15px;background:#1a1c1f}
+.db03-detail .quantity-control button{width:30px;height:36px;border:0;background:transparent;font-size:20px}
+.db03-detail .quantity-control span{font-weight:700}
+.db03-add,.db03-one-click{min-height:54px;border-radius:15px;font:750 16px var(--sans);cursor:pointer}
+.db03-add{display:flex;align-items:center;justify-content:center;gap:11px;border:1px solid #ffdf00;background:#ffdf00;color:#08090a}
+.db03-add:hover{background:#ffe73d}.db03-add svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.db03-one-click{width:100%;margin-top:9px;border:1px solid #ffdf00;background:transparent;color:#ffdf00}
+.db03-one-click span{margin-right:10px}
+.db03-extra{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.db03-extra article{padding:20px;border:1px solid #292b2e;border-radius:22px;background:#141619}
+.db03-extra article>span{color:#ffdf00;font:700 11px var(--mono);letter-spacing:.09em}
+.db03-extra p{margin:13px 0 0;color:#d2d5d7;font-size:15px;line-height:1.65}
+.db03-extra dl{margin:12px 0 0}.db03-extra dl div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #292b2e;font-size:13px}.db03-extra dt{color:#aeb3b5}.db03-extra dd{margin:0;color:#f3f3f1;text-align:right}
+.db03-no-photo{color:#ffdf00;font-size:54px}
+@media(max-width:800px){#product-dialog:has(.db03-detail){width:calc(100vw - 18px)!important;max-height:calc(100dvh - 18px)!important}.db03-detail{padding:55px 16px 20px!important}.db03-layout{grid-template-columns:1fr;row-gap:21px}.db03-copy{padding-top:0}.db03-copy h2{font-size:clamp(28px,7vw,40px)}.db03-extra{grid-column:auto;grid-template-columns:1fr}.db03-stage{border-radius:18px}.db03-thumb{width:58px;height:58px}}
+@media(max-width:390px){.db03-buy-row{grid-template-columns:86px minmax(0,1fr);gap:7px}.db03-add,.db03-one-click{font-size:14px}.db03-detail .quantity-control button{width:26px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -1731,10 +1773,26 @@ function openProduct(id,updateUrl=true){
 const p=products.find(x=>String(x.id)===String(id));if(!p)return;
 selected=p;detailQuantity=1;
 if(updateUrl)history.pushState({product:id},"","?product="+encodeURIComponent(id));
-const photos=(p.photos||[]),cat=categoryLabel(p);
+const photos=(p.photos||[]),cat=categoryLabel(p),isDb03=String(p.id)==="6942007635981";
+if(isDb03){
+let activePhoto=0;
+const thumbs=photos.map((u,i)=>'<button type="button" class="db03-thumb '+(i===0?"active":"")+'" data-gallery-photo="'+i+'" aria-label="Фото '+(i+1)+'"><img loading="lazy" src="'+escHTML(u)+'" alt=""/></button>').join("");
+const gallery='<section class="db03-gallery"><div class="db03-stage">'+(photos.length?'<img class="db03-main-image" id="db03-main-image" loading="eager" fetchpriority="high" decoding="async" src="'+escHTML(photos[0])+'" alt="'+escHTML(p.title)+'"/>':'<div class="db03-no-photo">ϟ</div>')+'<span class="db03-photo-count" id="db03-photo-count">1 / '+Math.max(photos.length,1)+'</span><button type="button" class="db03-zoom" aria-label="Збільшити фото">⌕</button>'+(photos.length>1?'<button type="button" class="db03-gallery-arrow prev" data-gallery-prev aria-label="Попереднє фото">‹</button><button type="button" class="db03-gallery-arrow next" data-gallery-next aria-label="Наступне фото">›</button><div class="db03-dots">'+photos.map((_,i)=>'<button type="button" class="'+(i===0?"active":"")+'" data-gallery-photo="'+i+'" aria-label="Фото '+(i+1)+'"></button>').join("")+'</div>':'')+'</div>'+(photos.length>1?'<div class="db03-thumbs">'+thumbs+'</div>':'')+'</section>';
+const specRows=(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("");
+document.querySelector("#product-detail").className="db03-detail";
+document.querySelector("#product-detail").innerHTML='<div class="db03-layout">'+gallery+'<section class="db03-copy"><span class="db03-capacity">'+escHTML(p.capacity||"Павербанк")+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2><div class="db03-meta"><span>Артикул: '+escHTML(p.name||"DB03 Max")+'</span><span class="db03-stock">'+(p.available===false?"Немає в наявності":"✓ В наявності")+'</span></div><div class="db03-price">'+escHTML(p.price||"Ціну уточнюйте")+'</div><p class="db03-description">'+escHTML(p.intro||p.desc||"")+'</p><div class="db03-buy-row"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="db03-add" type="button" data-cart-add="'+escHTML(p.id)+'" data-detail-add '+(p.available===false?"disabled":"")+'><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg>Додати в кошик</button></div><button type="button" class="db03-one-click" data-apply="'+escHTML(p.id)+'"><span>ϟ</span> Купити в 1 клік</button></section><section class="db03-extra"><article><span>ОПИС</span><p>'+escHTML(p.intro||p.desc||"")+'</p></article><article><span>ХАРАКТЕРИСТИКИ</span><dl>'+specRows+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></article></section></div>';
+const setGalleryPhoto=i=>{if(!photos.length)return;activePhoto=(i+photos.length)%photos.length;const img=document.querySelector("#db03-main-image");if(img)img.src=photos[activePhoto];const count=document.querySelector("#db03-photo-count");if(count)count.textContent=(activePhoto+1)+" / "+photos.length;document.querySelectorAll("[data-gallery-photo]").forEach(x=>x.classList.toggle("active",Number(x.dataset.galleryPhoto)===activePhoto))};
+document.querySelectorAll("[data-gallery-photo]").forEach(x=>x.addEventListener("click",()=>setGalleryPhoto(Number(x.dataset.galleryPhoto))));
+const prev=document.querySelector("[data-gallery-prev]"),next=document.querySelector("[data-gallery-next]");
+if(prev)prev.addEventListener("click",()=>setGalleryPhoto(activePhoto-1));
+if(next)next.addEventListener("click",()=>setGalleryPhoto(activePhoto+1));
+const zoom=document.querySelector(".db03-zoom");if(zoom)zoom.addEventListener("click",()=>{const img=document.querySelector("#db03-main-image");if(img)window.open(img.src,"_blank","noopener")});
+}else{
+document.querySelector("#product-detail").className="";
 const photoMarkup=photos.length?'<div class="detail-visual"><img class="detail-image" id="detail-image" loading="eager" fetchpriority="high" decoding="async" src="'+escHTML(photos[0])+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>'+(photos.length>1?'<div class="detail-thumbs">'+photos.map((u,i)=>'<button type="button" class="detail-thumb '+(i===0?"active":"")+'" data-photo="'+i+'" aria-label="Фото '+(i+1)+'"><img loading="lazy" src="'+escHTML(u)+'" alt=""/></button>').join("")+'</div>':'')+'</div>':'<div class="detail-visual detail-no-photo"><span>ϟ</span><small>Фото товару додамо пізніше</small></div>';
-document.querySelector("#product-detail").innerHTML=photoMarkup+'<div class="detail-copy"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+' / '+escHTML(cat)+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2>'+([p.capacity,p.power].filter(Boolean).length?'<div class="product-specs">'+[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</span>').join("")+'</div>':'')+'<p class="detail-description">'+escHTML(p.intro||p.desc||"Переглянь характеристики моделі перед замовленням.")+'</p><div class="detail-delivery-payment"><p><strong>Доставка</strong><span>Нова пошта по Україні</span></p><p><strong>Оплата</strong><span>При отриманні, без передоплати</span></p></div><div class="detail-actions"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="apply-button" data-cart-add="'+escHTML(p.id)+'" data-detail-add>В кошик <span>+</span></button></div><h3>Характеристики</h3><dl class="detail-specs">'+(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("")+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></div>';
-document.querySelectorAll("[data-photo]").forEach(b=>b.addEventListener("click",()=>{const img=document.querySelector("#detail-image");if(img){img.style.display="block";img.src=photos[Number(b.dataset.photo)]}document.querySelectorAll(".detail-thumb").forEach(x=>x.classList.toggle("active",x===b))}));
+document.querySelector("#product-detail").innerHTML=photoMarkup+'<div class="detail-copy"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+' / '+escHTML(cat)+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2>'+([p.capacity,p.power].filter(Boolean).length?'<div class="product-specs">'+[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</span>').join("")+'</div>':'')+'<p class="detail-description">'+escHTML(p.intro||p.desc||"Переглянь характеристики моделі перед замовленням.")+'</p><div class="detail-delivery-payment"><p><strong>Доставка</strong><span>Нова пошта по Україні</span></p><p><strong>Оплата</strong><span>При отриманні, без передоплати</span></p></div><div class="detail-actions"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="apply-button" data-cart-add="'+escHTML(p.id)+'" data-detail-add>В кошик <span>+</span></button><button type="button" class="quick-order" data-apply="'+escHTML(p.id)+'">Купити в 1 клік</button></div><h3>Характеристики</h3><dl class="detail-specs">'+(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("")+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></div>';
+document.querySelectorAll("[data-photo]").forEach(btn=>btn.addEventListener("click",()=>{const img=document.querySelector("#detail-image");if(img){img.style.display="block";img.src=photos[Number(btn.dataset.photo)]}document.querySelectorAll(".detail-thumb").forEach(x=>x.classList.toggle("active",x===btn))}));
+}
 showProductDialog()
 }
 function openApply(id,fromCart=false){selected=products.find(x=>x.id===id)||null;document.querySelector("#application-product").textContent=fromCart?cartSummary():(selected?selected.brand+" "+selected.name:"");document.querySelector("#application-price").textContent=fromCart?"Вартість уточнить менеджер.":(selected?.price||"Вартість уточнить менеджер.");document.querySelector("#application-content").hidden=false;document.querySelector("#application-success").hidden=true;document.querySelector("#application-error").textContent="";aDialog.showModal()}
