@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101110">
+<title>Фото товару — PowerMag</title>
+<link rel="icon" href="/favicon-mark.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:dark;--bg:#101110;--panel:#171917;--line:#2a2d29;--text:#f2f2ed;--muted:#a2a69e;--green:#7dff00;--sans:Manrope,Arial,sans-serif;--mono:"DM Mono",monospace}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 33%,#1d2616 0%,#101110 56%);color:var(--text);font-family:var(--sans)}
+a{color:inherit;text-decoration:none}.top{height:74px;padding:0 clamp(16px,5vw,64px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #292d27;background:#101110dd}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.7px}.brand img{width:36px;height:36px;object-fit:contain}.brand em{color:var(--green);font-style:normal}.back{color:#c2c7bc;font-size:13px}.back:hover{color:var(--green)}
+main{width:min(1120px,calc(100% - 28px));margin:26px auto 44px}.photo-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}.eyebrow{font:11px var(--mono);letter-spacing:.09em;color:var(--green);text-transform:uppercase}.photo-head h1{margin:6px 0 0;font-size:clamp(19px,3vw,30px);line-height:1.15;letter-spacing:-.035em}.count{color:var(--muted);font:12px var(--mono);white-space:nowrap}.frame{position:relative;min-height:min(72vh,760px);height:min(72vh,760px);display:grid;place-items:center;overflow:hidden;border:1px solid #30372a;border-radius:22px;background:radial-gradient(ellipse at 50% 48%,#222a19,#111311 69%);box-shadow:0 24px 80px #0007}.frame img{width:100%;height:100%;object-fit:contain;background:#f5f5f1}.nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid #454b40;border-radius:50%;background:#101310e8;color:white;font-size:28px;cursor:pointer}.nav:hover{border-color:var(--green);color:var(--green)}.nav.prev{left:16px}.nav.next{right:16px}.nav:disabled{opacity:.25;cursor:default}.bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px;color:var(--muted);font-size:12px}.open-product{padding:12px 17px;border:1px solid var(--green);border-radius:12px;background:var(--green);color:#10130d;font-weight:800}.open-product:hover{filter:brightness(1.08)}
+@media(max-width:600px){.top{height:64px}.brand{font-size:18px}.brand img{width:31px;height:31px}.back{font-size:11px}main{margin-top:16px}.photo-head{align-items:center}.frame{height:68vh;min-height:350px;border-radius:16px}.nav{width:42px;height:42px}.nav.prev{left:8px}.nav.next{right:8px}.bottom{font-size:10px}}
+</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="/" aria-label="PowerMag — головна"><img src="/powermag-mark.svg" alt=""><span>Power<em>Mag</em></span></a><a class="back" id="back-link" href="/">← Повернутися до товару</a></header>
+<main>
+<div class="photo-head"><div><span class="eyebrow">POWERMAG / ГАЛЕРЕЯ</span><h1 id="product-title">Фото товару</h1></div><span class="count" id="photo-count"></span></div>
+<div class="frame"><img id="product-photo" alt="Фото товару" referrerpolicy="no-referrer"><button class="nav prev" id="prev" type="button" aria-label="Попереднє фото">‹</button><button class="nav next" id="next" type="button" aria-label="Наступне фото">›</button></div>
+<div class="bottom"><span>PowerMag · Фото обраного товару</span><a class="open-product" id="product-link" href="/">Відкрити товар</a></div>
+</main>
+<script src="/catalog.js"></script>
+<script>
+(function(){
+ const products=window.powerMagProducts||[],params=new URLSearchParams(location.search);
+ const p=products.find(x=>String(x.id)===params.get("product"));
+ if(!p){document.querySelector("#product-title").textContent="Товар не знайдено";document.querySelector("#photo-count").textContent="";document.querySelector("#product-photo").hidden=true;document.querySelector("#prev").hidden=true;document.querySelector("#next").hidden=true;return}
+ const slug=String(p.sku||p.name||p.title||p.id).trim().replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"")||String(p.id);
+ const photos=Array.isArray(p.photos)?p.photos:[];let index=Math.max(0,Math.min(photos.length-1,Number(params.get("photo"))||0));
+ const productUrl="/?product="+encodeURIComponent(p.id)+"&article="+encodeURIComponent(slug);
+ document.querySelector("#back-link").href=productUrl;document.querySelector("#product-link").href=productUrl;
+ document.querySelector("#product-title").textContent=p.title||p.name||"Фото товару";
+ document.title=(p.name||"Фото товару")+" — PowerMag";
+ const img=document.querySelector("#product-photo"),count=document.querySelector("#photo-count"),prev=document.querySelector("#prev"),next=document.querySelector("#next");
+ function showPhoto(){if(!photos.length){img.hidden=true;count.textContent="Фото недоступне";prev.hidden=true;next.hidden=true;return}img.hidden=false;img.src=photos[index];img.alt=(p.title||p.name||"Товар")+" — фото "+(index+1);count.textContent=(index+1)+" / "+photos.length;prev.disabled=index===0;next.disabled=index===photos.length-1;const q=new URLSearchParams(location.search);q.set("photo",String(index));q.set("article",slug);history.replaceState(null,"",location.pathname+"?"+q.toString())}
+ prev.addEventListener("click",()=>{if(index>0){index--;showPhoto()}});next.addEventListener("click",()=>{if(index<photos.length-1){index++;showPhoto()}});
+ document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"&&index>0){index--;showPhoto()}if(e.key==="ArrowRight"&&index<photos.length-1){index++;showPhoto()}});
+ showPhoto();
+})();
+</script>
+</body>
+</html>
