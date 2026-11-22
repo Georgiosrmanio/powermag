@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 60 540 525">
+<defs>
+  <linearGradient id="pearl" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".5" stop-color="#f2f4ef"/><stop offset="1" stop-color="#d9ded7"/></linearGradient>
+  <linearGradient id="electric" x1=".08" y1=".12" x2=".88" y2=".9"><stop stop-color="#91ff18"/><stop offset=".48" stop-color="#68f900"/><stop offset="1" stop-color="#42db00"/></linearGradient>
+</defs>
+<path fill="url(#pearl)" d="M259 82h273c58 0 98 40 98 95 0 75-57 155-136 155H336l73-80h84c30 0 53-22 53-50 0-25-20-44-46-44H320l-60 88h-84z"/>
+<path fill="url(#electric)" d="M176 246h208l-111 119h86L117 562l97-216h-91z"/>
+<path fill="#b8ff62" opacity=".28" d="m214 346 81 0-43 46z"/>
+</svg>
