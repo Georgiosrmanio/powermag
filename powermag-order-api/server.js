@@ -103,8 +103,14 @@ const server = http.createServer(async (req, res) => {
   const phone = clean(data.phone, 40);
   const digits = phone.replace(/\D/g, "");
   const comment = clean(data.comment, 800);
+  const deliveryType = clean(data.deliveryType, 20);
+  const city = clean(data.city, 100);
+  const destination = clean(data.destination, 180);
+  const deliveryLabels = { branch: "Відділення", postomat: "Поштомат", courier: "Кур’єр" };
+  const hasDelivery = Boolean(deliveryType || city || destination);
   const items = normalizeItems(data.items);
-  if (name.length < 2 || digits.length < 9 || !items) {
+  if (name.length < 2 || digits.length < 9 || !items ||
+      (hasDelivery && (!deliveryLabels[deliveryType] || city.length < 2 || destination.length < 2))) {
     return reply(res, 400, { ok: false, code: "invalid_order" }, origin);
   }
 
@@ -121,6 +127,12 @@ const server = http.createServer(async (req, res) => {
     "",
     "Ім’я: " + name,
     "Телефон: " + phone,
+    ...(hasDelivery ? [
+      "",
+      "Доставка: Нова пошта — " + deliveryLabels[deliveryType],
+      "Населений пункт: " + city,
+      "Відділення / адреса: " + destination
+    ] : []),
     "",
     "Замовлення:",
     ...itemLines,
