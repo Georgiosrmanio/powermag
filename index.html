@@ -1876,7 +1876,6 @@ renderFilters();render();const q=new URLSearchParams(location.search).get("produ
 window.addEventListener("popstate",()=>{const id=new URLSearchParams(location.search).get("product");if(id)openProduct(id,false);else if(pDialog.open||pDialog.classList.contains("product-modal-open"))closeProductDialog()});
 
 
-document.addEventListener("contextmenu",event=>{const image=event.target.closest("img");if(!image)return;try{if(new URL(image.currentSrc||image.src,location.href).hostname==="mobimag.ua")event.preventDefault()}catch{}});
 </script>
 
 
