@@ -1513,10 +1513,9 @@ dialog#product-dialog.product-modal-open{display:block!important;position:fixed;
 .cart-trigger:hover{background:#8cff22!important;transform:translateY(-1px)}
 .cart-trigger-icon{display:block;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px}
 .cart-trigger-label{display:inline!important;color:inherit!important;background:none!important;border:0!important;border-radius:0!important;padding:0!important;font:inherit!important}
-.cart-trigger .cart-count-sr{
-  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;
-  clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;background:transparent!important;
-}
+.cart-trigger{position:relative!important;overflow:visible!important}
+.cart-trigger .cart-count-badge{position:absolute!important;top:-6px!important;right:-6px!important;z-index:3!important;min-width:19px!important;height:19px!important;padding:0 5px!important;display:grid!important;place-items:center!important;border:2px solid #0d0f0e!important;border-radius:999px!important;background:#f4f4f1!important;color:#151610!important;font:700 10px/1 var(--sans)!important;box-shadow:none!important}
+.cart-trigger .cart-count-badge[hidden]{display:none!important}
 @media(max-width:640px){.cart-trigger{min-height:38px!important;padding:0 13px!important;font-size:12px!important;gap:8px!important}}
 </style>
 <style>.stock-badge{position:absolute;z-index:2;top:12px;left:12px;background:#171a17ef;border:1px solid #f0cf5c;color:#f0cf5c;border-radius:999px;padding:8px 11px;font:10px var(--mono)}.product-unavailable .product-image{filter:grayscale(.75);opacity:.68}.product-add-button:disabled{opacity:.55;cursor:not-allowed;border-color:#63665f;color:#b5b8b0;background:#252825}</style><style id="reference-product-card-style">
@@ -1691,7 +1690,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <header class="site-header">
 <a aria-label="PowerMag — головна" class="brand" href="#"><span class="brand-icon"><img alt="" height="30" src="/powermag-mark.svg" width="30"/></span><span>Power<span class="yellow">Mag</span></span></a>
 <nav id="nav"><a href="#catalog">Каталог <i></i></a><a href="#how">Як замовити</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
-<button class="cart-trigger" type="button" data-cart-open aria-label="Відкрити кошик"><svg class="cart-trigger-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11h11.2L21 8H6"></path><circle cx="9" cy="19" r="1.4"></circle><circle cx="18" cy="19" r="1.4"></circle></svg><span class="cart-trigger-label">Кошик</span><span id="cart-count" class="cart-count-sr">0</span></button>
+<button class="cart-trigger" type="button" data-cart-open aria-label="Відкрити кошик"><svg class="cart-trigger-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11h11.2L21 8H6"></path><circle cx="9" cy="19" r="1.4"></circle><circle cx="18" cy="19" r="1.4"></circle></svg><span class="cart-trigger-label">Кошик</span><span id="cart-count" class="cart-count-badge" hidden>0</span></button>
 
 <button aria-label="Відкрити меню" class="menu-button" id="menu"><b></b><b></b></button>
 </header>
@@ -1842,7 +1841,7 @@ function capacityOf(p){return Number(String(p.capacity||"").replace(/[^0-9]/g,""
 function powerOf(p){return Number(String(p.power||"").replace(",",".").replace(/[^0-9.]/g,""))||0}
 function categoryKey(p){return p.category==="cable"||p.filter==="cable"?"accessories":"powerbank"}
 function filteredProducts(){const q=searchQuery.trim().toLocaleLowerCase("uk");let list=products.filter(p=>{const f=(p.filter||"").toLowerCase().split(/\s+/);const matches=activeFilter==="all"||activeFilter==="accessories"&&categoryKey(p)==="accessories"||activeFilter==="fast-charging"&&f.includes("fast")||activeFilter==="magsafe"&&f.includes("magnetic")||activeFilter==="standard"&&categoryKey(p)==="powerbank"&&!f.includes("fast")&&!f.includes("magnetic");if(!matches)return false;if(!q)return true;const text=[p.brand,p.name,p.title,p.desc,p.intro,p.sku,p.categoryName,...(p.specs||[]).flat()].filter(Boolean).join(" ").toLocaleLowerCase("uk");return text.includes(q)});if(sortMode==="name")list.sort((a,b)=>(a.title||a.name).localeCompare(b.title||b.name,"uk"));if(sortMode==="capacity-asc")list.sort((a,b)=>capacityOf(a)-capacityOf(b));if(sortMode==="capacity-desc")list.sort((a,b)=>capacityOf(b)-capacityOf(a));if(sortMode==="power-desc")list.sort((a,b)=>powerOf(b)-powerOf(a));const order=["hoco","xo","borofone","acefast","baseus"];function rank(p){const i=order.indexOf((p.brand||"").toLowerCase());return i<0?order.length:i}function hocoRank(p){if((p.brand||"").toLowerCase()!=="hoco")return 0;const n=(p.name||"").toUpperCase();if(/^DB03\s+MAX/.test(n))return 0;if(/^DB81\b/.test(n))return 1;if(/^DB81A\b/.test(n))return 2;if(/^DB82\b/.test(n))return 3;if(/^DB\d/.test(n))return 10+(Number((n.match(/^DB(\d+)/)||[])[1])||999);return 1000}list.sort((a,b)=>rank(a)-rank(b)||(rank(a)===0?hocoRank(a)-hocoRank(b):0));return list}function cartQty(){return cart.reduce((n,x)=>n+x.qty,0)}
-function syncCartCount(){document.querySelector("#cart-count").textContent=cartQty()}
+function syncCartCount(){const count=cartQty(),badge=document.querySelector("#cart-count"),button=document.querySelector(".cart-trigger");badge.textContent=count;badge.hidden=count===0;button.setAttribute("aria-label",count?`Відкрити кошик. Товарів: ${count}`:"Відкрити кошик")}
 function showCartToast(message){const t=document.querySelector("#cart-toast");t.textContent=message;t.classList.add("show");clearTimeout(showCartToast.timer);showCartToast.timer=setTimeout(()=>t.classList.remove("show"),1800)}
 function cartPriceValue(value){const digits=String(value||"").replace(/\D/g,"");if(!digits)return null;const amount=Number(digits);return Number.isSafeInteger(amount)?amount:null}
 function formatCartPrice(amount){return new Intl.NumberFormat("uk-UA").format(amount)+" грн"}
