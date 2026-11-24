@@ -1706,11 +1706,12 @@ section[id],.section[id]{scroll-margin-top:96px}
 .product-info .product-brand{display:block!important;margin-bottom:5px!important;color:var(--yellow)!important;font-size:9px!important;line-height:1.2!important}
 .product-info .product-specs{display:flex!important;gap:6px!important;flex-wrap:wrap!important;margin-top:9px!important}
 .product-info .product-specs span{padding:5px 8px!important;border:1px solid #384035!important;border-radius:999px!important;background:#111511!important;color:#d4ddca!important;font:9px var(--mono)!important;line-height:1.35!important}
-.stock-badge{max-width:calc(100% - 24px);padding:6px 9px;font-size:9px;white-space:nowrap}
-.stock-badge.stock-available{border-color:#7dff00;color:#a7ff63}
+.stock-badge{top:14px;left:14px;display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 28px);padding:7px 11px;border:1px solid rgba(125,255,0,.34);border-radius:999px;background:rgba(14,20,13,.91);color:#e7f6de;font:600 9px var(--sans);letter-spacing:.01em;line-height:1;white-space:nowrap;backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.stock-badge i{display:grid;place-items:center;width:15px;height:15px;border-radius:50%;background:rgba(125,255,0,.14);color:#8cf333;font-size:9px;font-style:normal}
+.stock-badge.stock-available{border-color:rgba(125,255,0,.3);color:#e7f6de}
 .stock-badge.stock-unknown{border-color:#6c7268;color:#d2d7cf}
 .stock-badge.stock-unavailable{border-color:#f0cf5c;color:#f0cf5c}
-.db03-stock.stock-unknown{color:#c4c9c0!important}
+.db03-stock{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid rgba(125,255,0,.24);border-radius:999px;background:rgba(125,255,0,.07);color:#baf28c!important;font-size:10px}.db03-stock.stock-available::before{content:"✓";display:grid;place-items:center;width:15px;height:15px;border-radius:50%;background:rgba(125,255,0,.13);color:#8cf333;font-size:9px}.db03-stock.stock-unknown{color:#c4c9c0!important}
 .db03-stock.stock-unavailable{color:#f0cf5c!important}
 .db03-payment-note{margin:18px 0;padding:13px 14px;border:1px solid #343a32;border-radius:12px;background:#141714;color:#c8cec3;font-size:12px;line-height:1.55}
 .db03-payment-note strong{display:block;margin-bottom:5px;color:#7dff00;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
@@ -1880,7 +1881,7 @@ function loadCart(){try{const saved=JSON.parse(localStorage.getItem("powermag-ca
 function saveCart(){try{localStorage.setItem("powermag-cart-v1",JSON.stringify(cart))}catch{}}
 function capacityOf(p){return Number(String(p.capacity||"").replace(/[^0-9]/g,""))||0}
 function powerOf(p){return Number(String(p.power||"").replace(",",".").replace(/[^0-9.]/g,""))||0}
-function stockLabel(p){return p.available===true?"В наявності":p.available===false?"Немає в наявності":"Наявність уточнюється"}
+function stockLabel(p){return p.available===true?"Є в наявності":p.available===false?"Немає в наявності":"Наявність уточнюється"}
 function stockClass(p){return p.available===true?"stock-available":p.available===false?"stock-unavailable":"stock-unknown"}
 function categoryKey(p){return p.category==="cable"||p.filter==="cable"?"accessories":"powerbank"}
 function filteredProducts(){
@@ -1927,7 +1928,7 @@ const specs=[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</s
 const photo=(p.photos||[])[0];
 const image=photo?'<img class="product-image" loading="lazy" fetchpriority="'+(index<4?"high":"low")+'" decoding="async" src="'+escHTML(photo)+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>':'<div class="product-image photo-fallback" aria-hidden="true"><span>ϟ</span></div>';
 const link='<a class="product-card-link" href="?product='+encodeURIComponent(p.id)+'" data-product="'+escHTML(p.id)+'" aria-label="Переглянути '+escHTML(p.title)+'">';
-const badge='<span class="stock-badge '+stockClass(p)+'">'+stockLabel(p)+'</span>';
+const badge='<span class="stock-badge '+stockClass(p)+'">'+(p.available===true?'<i aria-hidden="true">✓</i>':'')+stockLabel(p)+'</span>';
 const action=p.available===false?'<button class="apply-button product-add-button" type="button" disabled>Немає в наявності</button>':'<button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button>';
 return '<article class="product-card '+(p.available===false?'product-unavailable':'')+'">'+link+'<div class="product-photo">'+badge+image+'</div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3>'+'<p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom">'+(p.price?'<div class="product-price product-card-price">'+escHTML(p.price)+'</div>':'')+action+'</div></article>'
 }
