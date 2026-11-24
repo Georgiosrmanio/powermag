@@ -1694,6 +1694,37 @@ section[id],.section[id]{scroll-margin-top:96px}
 .hero-art .logo-stage{background:radial-gradient(ellipse at center,rgba(93,255,0,.045),rgba(93,255,0,.012) 46%,transparent 72%)!important;filter:drop-shadow(0 0 16px rgba(91,255,0,.05))!important}
 .hero-art .big-mark img{filter:drop-shadow(0 0 10px rgba(125,255,0,.045))!important}
 </style>
+<style id="catalog-controls-specs-stock-payment">
+.catalog-tools{display:grid!important;grid-template-columns:minmax(220px,1fr) minmax(190px,auto) auto!important;align-items:center!important;gap:12px 14px!important;margin-bottom:22px!important}
+.catalog-tools .filters{grid-column:1/-1!important}
+.catalog-tools .product-search{display:flex!important;grid-column:1!important;grid-row:2!important;align-items:center;width:100%!important;min-width:0;height:42px;margin:0;padding:0 12px;border:1px solid #383d35;border-radius:12px;background:#111411;color:#aeb4aa}
+.catalog-tools .product-search input{width:100%;min-width:0;height:40px;margin:0;padding:0;border:0;background:transparent;color:#f3f4ee;font:12px var(--sans);outline:none}
+.catalog-tools .product-search input::placeholder{color:#858c81}
+.catalog-tools .sort-control{display:flex!important;grid-column:2!important;grid-row:2!important;align-items:center;gap:8px;margin:0;color:#9ca398;font:10px var(--sans);white-space:nowrap}
+.catalog-tools .sort-control select{height:42px;max-width:190px;padding:0 28px 0 12px;border:1px solid #383d35;border-radius:12px;background:#111411;color:#f1f3ec;font:11px var(--sans)}
+.catalog-tools #product-count{grid-column:3!important;grid-row:2!important;justify-self:end!important;white-space:nowrap}
+.product-info .product-brand{display:block!important;margin-bottom:5px!important;color:var(--yellow)!important;font-size:9px!important;line-height:1.2!important}
+.product-info .product-specs{display:flex!important;gap:6px!important;flex-wrap:wrap!important;margin-top:9px!important}
+.product-info .product-specs span{padding:5px 8px!important;border:1px solid #384035!important;border-radius:999px!important;background:#111511!important;color:#d4ddca!important;font:9px var(--mono)!important;line-height:1.35!important}
+.stock-badge{max-width:calc(100% - 24px);padding:6px 9px;font-size:9px;white-space:nowrap}
+.stock-badge.stock-available{border-color:#7dff00;color:#a7ff63}
+.stock-badge.stock-unknown{border-color:#6c7268;color:#d2d7cf}
+.stock-badge.stock-unavailable{border-color:#f0cf5c;color:#f0cf5c}
+.db03-stock.stock-unknown{color:#c4c9c0!important}
+.db03-stock.stock-unavailable{color:#f0cf5c!important}
+.db03-payment-note{margin:18px 0;padding:13px 14px;border:1px solid #343a32;border-radius:12px;background:#141714;color:#c8cec3;font-size:12px;line-height:1.55}
+.db03-payment-note strong{display:block;margin-bottom:5px;color:#7dff00;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.order-payment-note{margin:14px 0;padding:12px 14px;border:1px solid #343a32;border-radius:12px;background:#141714;color:#c8cec3;font-size:11px;line-height:1.55}
+.order-payment-note strong{color:var(--yellow)}
+@media(max-width:760px){
+ .catalog-tools{grid-template-columns:minmax(0,1fr) auto!important;gap:10px!important}
+ .catalog-tools .filters{grid-column:1/-1!important}
+ .catalog-tools .product-search{grid-column:1/-1!important;grid-row:2!important}
+ .catalog-tools .sort-control{grid-column:1!important;grid-row:3!important}
+ .catalog-tools #product-count{grid-column:2!important;grid-row:3!important}
+ .catalog-tools .sort-control select{max-width:58vw}
+}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -1710,7 +1741,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <div class="eyebrow"><i class="status-dot"></i> ІНТЕРНЕТ-МАГАЗИН ДЛЯ БЛЕКАУТУ</div>
 <h1>СВІТЛО ЗНИКАЄ.<br/><span>ЖИТТЯ<br/>ПРОДОВЖУЄТЬСЯ.</span></h1>
 <div class="hero-offer"><span>У нас є</span><a href="#catalog"><i aria-hidden="true">🔋</i> ПАВЕРБАНКИ</a></div>
-<p>Павербанки, безперебійники для роутера та все для автономності вдома й у дорозі. Доставка по Україні, оплата при отриманні.</p>
+<p>Павербанки, безперебійники для роутера та все для автономності вдома й у дорозі. Доставка по Україні, оплата при отриманні або перед відправленням.</p>
 <div class="hero-actions"><a class="button" href="#catalog">Обрати товар <span>→</span></a><a class="button secondary" href="#how">Як замовити</a></div>
 <div class="hero-foot"><i></i> ЗАРЯДИ ЗАВЧАСНО — МАЙ ЕНЕРГІЮ ПРО ЗАПАС</div>
 </div>
@@ -1725,7 +1756,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <div class="hero-benefits" aria-label="Переваги замовлення">
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 7h11v11H3zM14 11h4l3 4v3h-7zM7.5 18.5a1.5 1.5 0 1 0 0 .01M18 18.5a1.5 1.5 0 1 0 0 .01"/></svg><span>Доставка по Україні</span></div>
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9h.01M18 15h.01"/></svg><span>Оплата при отриманні</span></div>
-  <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg><span>Без передоплати</span></div>
+  <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg><span>Або перед відправленням</span></div>
   <div class="hero-benefit"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 2a15 15 0 0 0 5.5 5.5L16 13l5 2v4c0 1.1-.9 2-2 2C10.7 21 3 13.3 3 5c0-1.1.9-2 2-2z"/></svg><span>Менеджер підтвердить замовлення</span></div>
   <div class="hero-catalog-count"><strong>🛡️ ГАРАНТІЯ НА ВСІ ТОВАРИ — 1 РІК</strong></div>
 </div>
@@ -1744,6 +1775,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <button type="button" class="category-card" data-filter="accessories" aria-pressed="false"><span class="category-icon" aria-hidden="true">⌁</span><span class="category-title">Кабелі</span></button>
 </div>
 <label class="product-search"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Пошук товару або бренду" autocomplete="off" aria-label="Пошук товару або бренду"/></label>
+<label class="sort-control"><span>Сортувати</span><select id="sort-products" aria-label="Сортування товарів"><option value="popular">За популярністю</option><option value="price-asc">Від дешевших</option><option value="price-desc">Від дорожчих</option><option value="name">За назвою</option><option value="capacity-desc">За ємністю</option><option value="power-desc">За потужністю</option></select></label>
 <span id="product-count">Товари скоро з’являться</span></div>
 <div class="products" id="product-grid"></div>
 <nav class="catalog-pagination" id="catalog-pagination" aria-label="Сторінки каталогу"></nav>
@@ -1753,16 +1785,16 @@ section[id],.section[id]{scroll-margin-top:96px}
   <div class="catalog-motto-group"><span>СВІТЛО</span><i>•</i><span>ЗВ’ЯЗОК</span><i>•</i><span>ТЕПЛО</span><i>•</i><span>ЕНЕРГІЯ</span><i>•</i><span>СПОКІЙ</span><i>•</i><span>СВІТЛО</span><i>•</i><span>ЗВ’ЯЗОК</span><i>•</i><span>ТЕПЛО</span><i>•</i><span>ЕНЕРГІЯ</span><i>•</i><span>СПОКІЙ</span><i>•</i><span>СВІТЛО</span><i>•</i><span>ЗВ’ЯЗОК</span><i>•</i><span>ТЕПЛО</span><i>•</i><span>ЕНЕРГІЯ</span><i>•</i><span>СПОКІЙ</span><i>•</i></div>
 </div>
 </div>
-<p class="catalog-note">Ціну та наявність уточнюйте перед замовленням. Характеристики допоможуть обрати потрібну модель.</p>
+<p class="catalog-note">Статус наявності вказаний у картці кожного товару. Якщо наявність уточнюється, менеджер перевірить її перед відправленням.</p>
 </section>
 <section class="how section" id="how">
-<div class="section-top"><span class="eyebrow"><strong>02</strong><i></i> ПРОСТО Й БЕЗ ПЕРЕДОПЛАТИ</span></div>
+<div class="section-top"><span class="eyebrow"><strong>02</strong><i></i> ПРОСТО Й ЗРУЧНО</span></div>
 <h2 class="how-title">ЯК ЗАМОВИТИ</h2>
 <div class="how-grid">
 <article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 3h2l2.6 12.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H5"/><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/></svg><span>01</span></div><h3>ОБЕРІТЬ ТОВАР</h3><p>Додайте в кошик усе потрібне або натисніть «Купити в 1 клік».</p></article>
 <article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/></svg><span>02</span></div><h3>ЗАЛИШТЕ КОНТАКТИ</h3><p>Лише ім’я та телефон — це займе пів хвилини.</p></article>
 <article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 2a15 15 0 0 0 5.5 5.5L16 13l5 2v4c0 1.1-.9 2-2 2C10.7 21 3 13.3 3 5c0-1.1.9-2 2-2z"/></svg><span>03</span></div><h3>МЕНЕДЖЕР ПЕРЕДЗВОНИТЬ</h3><p>Підтвердить склад замовлення, наявність і вартість доставки.</p></article>
-<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7zM3.5 7.3 12 12l8.5-4.7M12 22V12"/></svg><span>04</span></div><h3>ОТРИМАЙТЕ ПОСИЛКУ</h3><p>Новою поштою по всій Україні. Оплата при отриманні.</p></article>
+<article><div class="how-card-top"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7zM3.5 7.3 12 12l8.5-4.7M12 22V12"/></svg><span>04</span></div><h3>ОТРИМАЙТЕ ПОСИЛКУ</h3><p>Новою поштою по всій Україні. Оплата при отриманні або перед відправленням.</p></article>
 </div>
 </section>
 <section class="about section about-feature" id="about">
@@ -1773,7 +1805,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <p>PowerMag — магазин рішень для автономності. Допомагаємо залишатися на зв’язку та заряджати важливі пристрої, коли зникає електрика.</p>
 <p>Не впевнений, що підійде саме тобі? Залиш заявку — менеджер уточнить потреби й допоможе зорієнтуватися з вибором.</p>
 <div class="about-stats">
-<div><strong>0 ₴</strong><span>передоплати</span></div>
+<div><strong>2 способи</strong><span>оплати замовлення</span></div>
 <div><strong>По Україні</strong><span>доставка Новою поштою</span></div>
 <div><strong>PowerMag</strong><span>заряд поруч</span></div>
 <div><strong>🛡️ 1 рік</strong><span>гарантія на всі товари</span></div>
@@ -1792,9 +1824,9 @@ section[id],.section[id]{scroll-margin-top:96px}
 </article>
 <article class="delivery-card">
 <div class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9h.01M18 15h.01"/></svg></div>
-<h3>Оплата при отриманні</h3>
-<p>Без передоплати: оплачуєш замовлення у відділенні, коли забираєш посилку.</p>
-<small>Накладений платіж</small>
+<h3>При отриманні або перед відправленням</h3>
+<p>Можна оплатити у відділенні Нової пошти при отриманні або перед відправленням після підтвердження замовлення.</p>
+<small>Спосіб оплати узгодить менеджер</small>
 </article>
 <article class="delivery-card">
 <div class="delivery-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 3h3l1.5 5-2 1.5a15 15 0 0 0 5.4 5.4l1.5-2 5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/></svg></div>
@@ -1823,7 +1855,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <div class="footer-column"><span>Документи</span><a href="/privacy.html">Політика конфіденційності</a><a href="/returns.html">Обмін і повернення</a></div>
 </footer>
 <dialog id="product-dialog"><button aria-label="Закрити" class="dialog-close">×</button><div id="product-detail"></div></dialog>
-<dialog id="application-dialog"><button aria-label="Закрити" class="dialog-close">×</button><div id="application-content"><span class="eyebrow">POWERMAG / ЗАМОВЛЕННЯ</span><h2>Залишити заявку</h2><div class="application-product-card" id="application-product-card" aria-live="polite"></div><p id="application-product" hidden=""></p><p class="application-price" id="application-price"></p>
+<dialog id="application-dialog"><button aria-label="Закрити" class="dialog-close">×</button><div id="application-content"><span class="eyebrow">POWERMAG / ЗАМОВЛЕННЯ</span><h2>Залишити заявку</h2><div class="application-product-card" id="application-product-card" aria-live="polite"></div><p class="order-payment-note"><strong>Оплата:</strong> при отриманні або перед відправленням. Менеджер узгодить спосіб під час підтвердження замовлення.</p><p id="application-product" hidden=""></p><p class="application-price" id="application-price"></p>
 <form id="application-form"><label>Ваше ім’я<input autocomplete="name" maxlength="80" minlength="2" name="name" placeholder="Як до вас звертатися?" required=""/></label><label>Номер телефону<input autocomplete="tel" inputmode="tel" maxlength="30" name="phone" placeholder="+380 XX XXX XX XX" required="" type="tel"/></label><label>Коментар <span>(необов’язково)</span><textarea maxlength="1000" name="comment" placeholder="Запитання або побажання до замовлення" rows="3"></textarea></label><label class="form-trap">Website<input autocomplete="off" name="website" tabindex="-1"/></label><label class="privacy-consent"><input type="checkbox" name="privacyConsent" value="yes" required><span>Погоджуюся на обробку моїх даних для опрацювання заявки та підтверджую, що ознайомився/лася з <a href="/privacy.html" target="_blank" rel="noopener">політикою конфіденційності</a>.</span></label><p class="form-privacy">Контактні дані будуть передані менеджеру для підтвердження замовлення.</p><p id="application-error" role="alert"></p><button class="button submit-application" type="submit">Відправити заявку <span>↗</span></button></form></div>
 <div hidden="" id="application-success"><span class="success-mark">✓</span><h2>Заявку надіслано</h2><p>Менеджер отримав її в Telegram і зв’яжеться з вами для підтвердження замовлення.</p><button class="button application-done" type="button">Повернутися до каталогу</button></div></dialog>
 <dialog id="cart-dialog" class="cart-dialog" aria-labelledby="cart-title">
@@ -1848,8 +1880,36 @@ function loadCart(){try{const saved=JSON.parse(localStorage.getItem("powermag-ca
 function saveCart(){try{localStorage.setItem("powermag-cart-v1",JSON.stringify(cart))}catch{}}
 function capacityOf(p){return Number(String(p.capacity||"").replace(/[^0-9]/g,""))||0}
 function powerOf(p){return Number(String(p.power||"").replace(",",".").replace(/[^0-9.]/g,""))||0}
+function stockLabel(p){return p.available===true?"В наявності":p.available===false?"Немає в наявності":"Наявність уточнюється"}
+function stockClass(p){return p.available===true?"stock-available":p.available===false?"stock-unavailable":"stock-unknown"}
 function categoryKey(p){return p.category==="cable"||p.filter==="cable"?"accessories":"powerbank"}
-function filteredProducts(){const q=searchQuery.trim().toLocaleLowerCase("uk");let list=products.filter(p=>{const f=(p.filter||"").toLowerCase().split(/\s+/);const matches=activeFilter==="all"||activeFilter==="accessories"&&categoryKey(p)==="accessories"||activeFilter==="fast-charging"&&f.includes("fast")||activeFilter==="magsafe"&&f.includes("magnetic")||activeFilter==="standard"&&categoryKey(p)==="powerbank"&&!f.includes("fast")&&!f.includes("magnetic");if(!matches)return false;if(!q)return true;const text=[p.brand,p.name,p.title,p.desc,p.intro,p.sku,p.categoryName,...(p.specs||[]).flat()].filter(Boolean).join(" ").toLocaleLowerCase("uk");return text.includes(q)});if(sortMode==="name")list.sort((a,b)=>(a.title||a.name).localeCompare(b.title||b.name,"uk"));if(sortMode==="capacity-asc")list.sort((a,b)=>capacityOf(a)-capacityOf(b));if(sortMode==="capacity-desc")list.sort((a,b)=>capacityOf(b)-capacityOf(a));if(sortMode==="power-desc")list.sort((a,b)=>powerOf(b)-powerOf(a));const order=["hoco","xo","borofone","acefast","baseus"];function rank(p){const i=order.indexOf((p.brand||"").toLowerCase());return i<0?order.length:i}function hocoRank(p){if((p.brand||"").toLowerCase()!=="hoco")return 0;const n=(p.name||"").toUpperCase();if(/^DB03\s+MAX/.test(n))return 0;if(/^DB81\b/.test(n))return 1;if(/^DB81A\b/.test(n))return 2;if(/^DB82\b/.test(n))return 3;if(/^DB\d/.test(n))return 10+(Number((n.match(/^DB(\d+)/)||[])[1])||999);return 1000}list.sort((a,b)=>rank(a)-rank(b)||(rank(a)===0?hocoRank(a)-hocoRank(b):0));return list}function cartQty(){return cart.reduce((n,x)=>n+x.qty,0)}
+function filteredProducts(){
+const q=searchQuery.trim().toLocaleLowerCase("uk");
+let list=products.filter(p=>{
+const f=(p.filter||"").toLowerCase().split(/\s+/);
+const matches=activeFilter==="all"||activeFilter==="accessories"&&categoryKey(p)==="accessories"||activeFilter==="fast-charging"&&f.includes("fast")||activeFilter==="magsafe"&&f.includes("magnetic")||activeFilter==="standard"&&categoryKey(p)==="powerbank"&&!f.includes("fast")&&!f.includes("magnetic");
+if(!matches)return false;
+if(!q)return true;
+const text=[p.brand,p.name,p.title,p.desc,p.intro,p.sku,p.categoryName,...(p.specs||[]).flat()].filter(Boolean).join(" ").toLocaleLowerCase("uk");
+return text.includes(q)
+});
+const byName=(a,b)=>(a.title||a.name).localeCompare(b.title||b.name,"uk");
+if(sortMode==="name")list.sort(byName);
+else if(sortMode==="capacity-asc")list.sort((a,b)=>capacityOf(a)-capacityOf(b));
+else if(sortMode==="capacity-desc")list.sort((a,b)=>capacityOf(b)-capacityOf(a));
+else if(sortMode==="power-desc")list.sort((a,b)=>powerOf(b)-powerOf(a));
+else if(sortMode==="price-asc"||sortMode==="price-desc"){
+const priceOf=p=>{const digits=String(p.price||"").replace(/\D/g,"");return digits?Number(digits):null};
+list.sort((a,b)=>{const pa=priceOf(a),pb=priceOf(b);if(pa===null)return pb===null?byName(a,b):1;if(pb===null)return -1;return sortMode==="price-asc"?pa-pb:pb-pa})
+}else{
+const order=["hoco","xo","borofone","acefast","baseus"];
+function rank(p){const i=order.indexOf((p.brand||"").toLowerCase());return i<0?order.length:i}
+function hocoRank(p){if((p.brand||"").toLowerCase()!=="hoco")return 0;const n=(p.name||"").toUpperCase();if(/^DB03\s+MAX/.test(n))return 0;if(/^DB81\b/.test(n))return 1;if(/^DB81A\b/.test(n))return 2;if(/^DB82\b/.test(n))return 3;if(/^DB\d/.test(n))return 10+(Number((n.match(/^DB(\d+)/)||[])[1])||999);return 1000}
+list.sort((a,b)=>rank(a)-rank(b)||(rank(a)===0?hocoRank(a)-hocoRank(b):byName(a,b)))
+}
+return list
+}
+function cartQty(){return cart.reduce((n,x)=>n+x.qty,0)}
 function syncCartCount(){const count=cartQty(),badge=document.querySelector("#cart-count"),button=document.querySelector(".cart-trigger");badge.textContent=count;badge.hidden=count===0;button.setAttribute("aria-label",count?`Відкрити кошик. Товарів: ${count}`:"Відкрити кошик")}
 function showCartToast(message){const t=document.querySelector("#cart-toast");t.textContent=message;t.classList.add("show");clearTimeout(showCartToast.timer);showCartToast.timer=setTimeout(()=>t.classList.remove("show"),1800)}
 function cartPriceValue(value){const digits=String(value||"").replace(/\D/g,"");if(!digits)return null;const amount=Number(digits);return Number.isSafeInteger(amount)?amount:null}
@@ -1867,7 +1927,7 @@ const specs=[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</s
 const photo=(p.photos||[])[0];
 const image=photo?'<img class="product-image" loading="lazy" fetchpriority="'+(index<4?"high":"low")+'" decoding="async" src="'+escHTML(photo)+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>':'<div class="product-image photo-fallback" aria-hidden="true"><span>ϟ</span></div>';
 const link='<a class="product-card-link" href="?product='+encodeURIComponent(p.id)+'" data-product="'+escHTML(p.id)+'" aria-label="Переглянути '+escHTML(p.title)+'">';
-const badge=p.available===false?'<span class="stock-badge">Немає в наявності</span>':'';
+const badge='<span class="stock-badge '+stockClass(p)+'">'+stockLabel(p)+'</span>';
 const action=p.available===false?'<button class="apply-button product-add-button" type="button" disabled>Немає в наявності</button>':'<button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button>';
 return '<article class="product-card '+(p.available===false?'product-unavailable':'')+'">'+link+'<div class="product-photo">'+badge+image+'</div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3>'+'<p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom">'+(p.price?'<div class="product-price product-card-price">'+escHTML(p.price)+'</div>':'')+action+'</div></article>'
 }
@@ -1887,7 +1947,7 @@ const thumbs=photos.map((u,i)=>'<button type="button" class="db03-thumb '+(i===0
 const gallery='<section class="db03-gallery"><div class="db03-stage">'+(photos.length?'<img class="db03-main-image" id="db03-main-image" loading="eager" fetchpriority="high" decoding="async" src="'+escHTML(photos[0])+'" alt="'+escHTML(p.title)+'"/>':'<div class="db03-no-photo">ϟ</div>')+'<span class="db03-photo-count" id="db03-photo-count">1 / '+Math.max(photos.length,1)+'</span><button type="button" class="db03-zoom" aria-label="Збільшити фото">⌕</button>'+(photos.length>1?'<button type="button" class="db03-gallery-arrow prev" data-gallery-prev aria-label="Попереднє фото">‹</button><button type="button" class="db03-gallery-arrow next" data-gallery-next aria-label="Наступне фото">›</button><div class="db03-dots">'+photos.map((_,i)=>'<button type="button" class="'+(i===0?"active":"")+'" data-gallery-photo="'+i+'" aria-label="Фото '+(i+1)+'"></button>').join("")+'</div>':'')+'</div>'+(photos.length>1?'<div class="db03-thumbs">'+thumbs+'</div>':'')+'</section>';
 const specRows=(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("");
 document.querySelector("#product-detail").className="db03-detail";
-document.querySelector("#product-detail").innerHTML='<div class="db03-layout">'+gallery+'<section class="db03-copy"><span class="db03-capacity">'+escHTML(p.capacity||p.power||cat||"Товар")+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2><div class="db03-meta"><span>Артикул: '+escHTML(p.name||"DB03 Max")+'</span><span class="db03-stock">'+(p.available===false?"Немає в наявності":"✓ В наявності")+'</span></div><div class="db03-price">'+escHTML(p.price||"Ціну уточнюйте")+'</div><p class="db03-description">'+escHTML(p.intro||p.desc||"")+'</p><div class="db03-buy-row"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="db03-add" type="button" data-cart-add="'+escHTML(p.id)+'" data-detail-add '+(p.available===false?"disabled":"")+'><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg>Додати в кошик</button></div><button type="button" class="db03-one-click" data-apply="'+escHTML(p.id)+'"><span>ϟ</span> Купити в 1 клік</button></section><section class="db03-extra"><article><span>ОПИС</span><p>'+escHTML(p.intro||p.desc||"")+'</p></article><article><span>ХАРАКТЕРИСТИКИ</span><dl>'+specRows+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></article></section></div>';
+document.querySelector("#product-detail").innerHTML='<div class="db03-layout">'+gallery+'<section class="db03-copy"><span class="db03-capacity">'+escHTML(p.capacity||p.power||cat||"Товар")+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2><div class="db03-meta"><span>Артикул: '+escHTML(p.name||"DB03 Max")+'</span><span class="db03-stock '+stockClass(p)+'">'+stockLabel(p)+'</span></div><div class="db03-price">'+escHTML(p.price||"Ціну уточнюйте")+'</div><p class="db03-description">'+escHTML(p.intro||p.desc||"")+'</p><p class="db03-payment-note"><strong>Оплата</strong> При отриманні або перед відправленням. Менеджер узгодить спосіб після підтвердження.</p><div class="db03-buy-row"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="db03-add" type="button" data-cart-add="'+escHTML(p.id)+'" data-detail-add '+(p.available===false?"disabled":"")+'><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 8H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg>Додати в кошик</button></div><button type="button" class="db03-one-click" data-apply="'+escHTML(p.id)+'"><span>ϟ</span> Купити в 1 клік</button></section><section class="db03-extra"><article><span>ОПИС</span><p>'+escHTML(p.intro||p.desc||"")+'</p></article><article><span>ХАРАКТЕРИСТИКИ</span><dl>'+specRows+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></article></section></div>';
 const setGalleryPhoto=i=>{if(!photos.length)return;activePhoto=(i+photos.length)%photos.length;const img=document.querySelector("#db03-main-image");if(img)img.src=photos[activePhoto];const count=document.querySelector("#db03-photo-count");if(count)count.textContent=(activePhoto+1)+" / "+photos.length;document.querySelectorAll("[data-gallery-photo]").forEach(x=>x.classList.toggle("active",Number(x.dataset.galleryPhoto)===activePhoto))};
 document.querySelectorAll("[data-gallery-photo]").forEach(x=>x.addEventListener("click",()=>setGalleryPhoto(Number(x.dataset.galleryPhoto))));
 const prev=document.querySelector("[data-gallery-prev]"),next=document.querySelector("[data-gallery-next]");
@@ -1897,7 +1957,7 @@ const openFullPhoto=()=>window.open(photoViewerUrl(p,activePhoto),"_blank","noop
 }else{
 document.querySelector("#product-detail").className="";
 const photoMarkup=photos.length?'<div class="detail-visual"><img class="detail-image" id="detail-image" loading="eager" fetchpriority="high" decoding="async" src="'+escHTML(photos[0])+'" alt="'+escHTML(p.title)+'" onerror="this.remove()"/>'+(photos.length>1?'<div class="detail-thumbs">'+photos.map((u,i)=>'<button type="button" class="detail-thumb '+(i===0?"active":"")+'" data-photo="'+i+'" aria-label="Фото '+(i+1)+'"><img loading="lazy" src="'+escHTML(u)+'" alt=""/></button>').join("")+'</div>':'')+'</div>':'<div class="detail-visual detail-no-photo"><span>ϟ</span><small>Фото товару додамо пізніше</small></div>';
-document.querySelector("#product-detail").innerHTML=photoMarkup+'<div class="detail-copy"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+' / '+escHTML(cat)+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2>'+([p.capacity,p.power].filter(Boolean).length?'<div class="product-specs">'+[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</span>').join("")+'</div>':'')+'<p class="detail-description">'+escHTML(p.intro||p.desc||"Переглянь характеристики моделі перед замовленням.")+'</p><div class="detail-delivery-payment"><p><strong>Доставка</strong><span>Нова пошта по Україні</span></p><p><strong>Оплата</strong><span>При отриманні, без передоплати</span></p></div><div class="detail-actions"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="apply-button" data-cart-add="'+escHTML(p.id)+'" data-detail-add>В кошик <span>+</span></button><button type="button" class="quick-order" data-apply="'+escHTML(p.id)+'">Купити в 1 клік</button></div><h3>Характеристики</h3><dl class="detail-specs">'+(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("")+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></div>';
+document.querySelector("#product-detail").innerHTML=photoMarkup+'<div class="detail-copy"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+' / '+escHTML(cat)+'</span><h2 id="dialog-title">'+escHTML(p.title||p.name)+'</h2>'+([p.capacity,p.power].filter(Boolean).length?'<div class="product-specs">'+[p.capacity,p.power].filter(Boolean).map(x=>'<span>'+escHTML(x)+'</span>').join("")+'</div>':'')+'<p class="detail-description">'+escHTML(p.intro||p.desc||"Переглянь характеристики моделі перед замовленням.")+'</p><div class="detail-delivery-payment"><p><strong>Доставка</strong><span>Нова пошта по Україні</span></p><p><strong>Оплата</strong><span>При отриманні або перед відправленням — спосіб узгодить менеджер</span></p></div><div class="detail-actions"><div class="quantity-control" aria-label="Кількість"><button type="button" data-detail-qty="-1" aria-label="Зменшити кількість">−</button><span id="detail-quantity">1</span><button type="button" data-detail-qty="1" aria-label="Збільшити кількість">+</button></div><button class="apply-button" data-cart-add="'+escHTML(p.id)+'" data-detail-add>В кошик <span>+</span></button><button type="button" class="quick-order" data-apply="'+escHTML(p.id)+'">Купити в 1 клік</button></div><h3>Характеристики</h3><dl class="detail-specs">'+(p.specs||[]).map(s=>'<div><dt>'+escHTML(s[0])+'</dt><dd>'+escHTML(s[1])+'</dd></div>').join("")+(p.sku?'<div><dt>Артикул</dt><dd>'+escHTML(p.sku)+'</dd></div>':'')+'</dl></div>';
 document.querySelectorAll("[data-photo]").forEach(btn=>btn.addEventListener("click",()=>{const img=document.querySelector("#detail-image");if(img){img.style.display="block";img.src=photos[Number(btn.dataset.photo)]}document.querySelectorAll(".detail-thumb").forEach(x=>x.classList.toggle("active",x===btn))}));
 }
 showProductDialog()
