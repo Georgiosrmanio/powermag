@@ -1725,7 +1725,17 @@ section[id],.section[id]{scroll-margin-top:96px}
  .catalog-tools .sort-control select{max-width:58vw}
 }
 </style>
-<style id="checkout-form-controls">#application-form select{display:block;width:100%;margin-top:8px;padding:13px;background:#101310;border:1px solid #3a4036;color:white;font:12px var(--sans);outline:none}#application-form select:focus{border-color:var(--yellow)}#application-form select:invalid{color:#858c81}</style></head>
+<style id="checkout-form-controls">#application-form select{display:block;width:100%;margin-top:8px;padding:13px;background:#101310;border:1px solid #3a4036;color:white;font:12px var(--sans);outline:none}#application-form select:focus{border-color:var(--yellow)}#application-form select:invalid{color:#858c81}</style><style id="catalog-facet-filters">
+.catalog-extra-filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-8px 0 22px}
+.catalog-extra-filters[hidden]{display:none!important}
+.catalog-facet{display:flex;align-items:center;gap:8px;color:var(--muted);font:10px var(--mono)}
+.catalog-facet select{min-width:150px;padding:10px 32px 10px 12px;border:1px solid #343831;border-radius:4px;background:#171a17;color:var(--text);font:11px var(--sans);cursor:pointer}
+.catalog-facet select:focus{outline:1px solid var(--yellow);border-color:var(--yellow)}
+.catalog-filter-reset{padding:10px 12px;border:1px solid #343831;border-radius:4px;background:transparent;color:#aeb2a8;font:10px var(--mono);cursor:pointer;transition:.2s}
+.catalog-filter-reset:hover:not(:disabled){border-color:var(--yellow);color:var(--yellow)}
+.catalog-filter-reset:disabled{opacity:.42;cursor:default}
+@media(max-width:760px){.catalog-extra-filters{margin:-3px 0 18px;gap:8px}.catalog-facet{flex:1;min-width:145px;justify-content:space-between}.catalog-facet select{min-width:0;flex:1}.catalog-filter-reset{width:100%}}
+</style></head>
 <body>
 <header class="site-header">
 <a aria-label="PowerMag — головна" class="brand" href="#"><span class="brand-icon"><img alt="" height="30" src="/powermag-mark.svg" width="30"/></span><span>Power<span class="yellow">Mag</span></span></a>
@@ -1777,6 +1787,11 @@ section[id],.section[id]{scroll-margin-top:96px}
 <label class="product-search"><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Пошук товару або бренду" autocomplete="off" aria-label="Пошук товару або бренду"/></label>
 <label class="sort-control"><span>Сортувати</span><select id="sort-products" aria-label="Сортування товарів"><option value="popular">За популярністю</option><option value="price-asc">Від дешевших</option><option value="price-desc">Від дорожчих</option><option value="name">За назвою</option><option value="capacity-desc">За ємністю</option><option value="power-desc">За потужністю</option></select></label>
 <span id="product-count">Товари скоро з’являться</span></div>
+<div class="catalog-extra-filters" aria-label="Фільтри товарів">
+<label class="catalog-facet"><span>Ємність</span><select id="capacity-filter" aria-label="Фільтр за ємністю"><option value="">Будь-яка</option></select></label>
+<label class="catalog-facet"><span>Бренд</span><select id="brand-filter" aria-label="Фільтр за брендом"><option value="">Усі бренди</option></select></label>
+<button id="reset-product-filters" type="button" class="catalog-filter-reset" disabled>Скинути фільтри</button>
+</div>
 <div class="products" id="product-grid"></div>
 <nav class="catalog-pagination" id="catalog-pagination" aria-label="Сторінки каталогу"></nav>
 <div class="catalog-motto" aria-label="Світло, зв’язок, тепло, енергія, спокій">
@@ -1867,7 +1882,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <script src="catalog.js?v=mobimag-stock-refresh-20261120-2044"></script>
 <script>
 const products=window.powerMagProducts;
-let selected=null,activeFilter="all",currentPage=1,sortMode="popular",cart=loadCart(),detailQuantity=1,searchQuery="";
+let selected=null,activeFilter="all",currentPage=1,sortMode="popular",cart=loadCart(),detailQuantity=1,searchQuery="",brandFilter="",capacityFilter="";
 const cartDialog=document.querySelector("#cart-dialog");
 const pDialog=document.querySelector("#product-dialog");
 const aDialog=document.querySelector("#application-dialog");
@@ -1889,6 +1904,8 @@ let list=products.filter(p=>{
 const f=(p.filter||"").toLowerCase().split(/\s+/);
 const matches=activeFilter==="all"||activeFilter==="accessories"&&categoryKey(p)==="accessories"||activeFilter==="fast-charging"&&f.includes("fast")||activeFilter==="magsafe"&&f.includes("magnetic")||activeFilter==="standard"&&categoryKey(p)==="powerbank"&&!f.includes("fast")&&!f.includes("magnetic");
 if(!matches)return false;
+if(brandFilter&&p.brand!==brandFilter)return false;
+if(capacityFilter&&capacityOf(p)!==Number(capacityFilter))return false;
 if(!q)return true;
 const text=[p.brand,p.name,p.title,p.desc,p.intro,p.sku,p.categoryName,...(p.specs||[]).flat()].filter(Boolean).join(" ").toLocaleLowerCase("uk");
 return text.includes(q)
@@ -1931,7 +1948,7 @@ const badge='<span class="stock-badge '+stockClass(p)+'">'+stockLabel(p)+'</span
 const action=p.available===false?'<button class="apply-button product-add-button" type="button" disabled>Немає в наявності</button>':'<button class="apply-button product-add-button" type="button" data-cart-add="'+escHTML(p.id)+'"><span>В кошик</span><b aria-hidden="true">+</b></button>';
 return '<article class="product-card '+(p.available===false?'product-unavailable':'')+'">'+link+'<div class="product-photo">'+badge+image+'</div><div class="product-info"><span class="product-brand">'+escHTML(p.brand||"PowerMag")+'</span><h3>'+escHTML(p.title||p.name)+'</h3>'+'<p>'+escHTML(p.desc||"Переглянь характеристики моделі.")+'</p>'+(specs?'<div class="product-specs">'+specs+'</div>':'')+'</div></a><div class="product-bottom">'+(p.price?'<div class="product-price product-card-price">'+escHTML(p.price)+'</div>':'')+action+'</div></article>'
 }
-function render(){const grid=document.querySelector("#product-grid"),list=filteredProducts(),maxPage=Math.max(1,Math.ceil(list.length/pageSize));currentPage=Math.min(currentPage,maxPage);const start=(currentPage-1)*pageSize;grid.innerHTML=list.length?list.slice(start,start+pageSize).map((p,index)=>card(p,index)).join(""):(products.length?'<div class="empty-catalog">За цим запитом товарів не знайдено.</div>':'<div class="empty-catalog">Товари в цих розділах з’являться незабаром.</div>');const filters=document.querySelector(".filters"),sortControl=document.querySelector(".sort-control");if(filters)filters.hidden=false;const search=document.querySelector(".product-search");if(search)search.hidden=!products.length;if(sortControl){sortControl.hidden=!products.length;sortControl.style.display=products.length?"":"none"}const searchControl=document.querySelector(".product-search");if(searchControl){searchControl.hidden=!products.length;searchControl.style.display=products.length?"":"none"}const heroCount=document.querySelector(".hero-catalog-count strong");if(heroCount)heroCount.textContent="🛡️ ГАРАНТІЯ НА ВСІ ТОВАРИ — 1 РІК";document.querySelector("#product-count").textContent=products.length?(list.length?"Показано "+(start+1)+"–"+Math.min(start+pageSize,list.length)+" з "+list.length.toLocaleString("uk-UA")+" товарів":"Нічого не знайдено"):"Товари скоро з’являться";const pager=document.querySelector("#catalog-pagination");if(maxPage<2){pager.innerHTML="";return}const wanted=[1,...[currentPage-1,currentPage,currentPage+1].filter(n=>n>1&&n<maxPage),maxPage],pages=[...new Set(wanted)].sort((a,b)=>a-b);let buttons="";for(let i=0;i<pages.length;i++){if(i&&pages[i]-pages[i-1]>1)buttons+='<span class="page-gap">…</span>';const n=pages[i];buttons+='<button type="button" data-page="'+n+'" class="'+(currentPage===n?"active":"")+'" aria-current="'+(currentPage===n?"page":"false")+'">'+n+'</button>'}pager.innerHTML='<button type="button" data-page="'+(currentPage-1)+'" '+(currentPage===1?"disabled":"")+' aria-label="Попередня сторінка">‹</button>'+buttons+'<button type="button" data-page="'+(currentPage+1)+'" '+(currentPage===maxPage?"disabled":"")+' aria-label="Наступна сторінка">›</button>'}function showProductDialog(){const backdrop=document.createElement("div");backdrop.className="product-modal-backdrop";backdrop.addEventListener("click",closeProductDialog);document.body.appendChild(backdrop);pDialog.classList.add("product-modal-open");pDialog.setAttribute("open","");document.body.classList.add("product-modal-visible")}
+function render(){const extraFilters=document.querySelector(".catalog-extra-filters");if(extraFilters)extraFilters.hidden=!products.length;const resetButton=document.querySelector("#reset-product-filters");if(resetButton)resetButton.disabled=!brandFilter&&!capacityFilter;const grid=document.querySelector("#product-grid"),list=filteredProducts(),maxPage=Math.max(1,Math.ceil(list.length/pageSize));currentPage=Math.min(currentPage,maxPage);const start=(currentPage-1)*pageSize;grid.innerHTML=list.length?list.slice(start,start+pageSize).map((p,index)=>card(p,index)).join(""):(products.length?'<div class="empty-catalog">За цим запитом товарів не знайдено.</div>':'<div class="empty-catalog">Товари в цих розділах з’являться незабаром.</div>');const filters=document.querySelector(".filters"),sortControl=document.querySelector(".sort-control");if(filters)filters.hidden=false;const search=document.querySelector(".product-search");if(search)search.hidden=!products.length;if(sortControl){sortControl.hidden=!products.length;sortControl.style.display=products.length?"":"none"}const searchControl=document.querySelector(".product-search");if(searchControl){searchControl.hidden=!products.length;searchControl.style.display=products.length?"":"none"}const heroCount=document.querySelector(".hero-catalog-count strong");if(heroCount)heroCount.textContent="🛡️ ГАРАНТІЯ НА ВСІ ТОВАРИ — 1 РІК";document.querySelector("#product-count").textContent=products.length?(list.length?"Показано "+(start+1)+"–"+Math.min(start+pageSize,list.length)+" з "+list.length.toLocaleString("uk-UA")+" товарів":"Нічого не знайдено"):"Товари скоро з’являться";const pager=document.querySelector("#catalog-pagination");if(maxPage<2){pager.innerHTML="";return}const wanted=[1,...[currentPage-1,currentPage,currentPage+1].filter(n=>n>1&&n<maxPage),maxPage],pages=[...new Set(wanted)].sort((a,b)=>a-b);let buttons="";for(let i=0;i<pages.length;i++){if(i&&pages[i]-pages[i-1]>1)buttons+='<span class="page-gap">…</span>';const n=pages[i];buttons+='<button type="button" data-page="'+n+'" class="'+(currentPage===n?"active":"")+'" aria-current="'+(currentPage===n?"page":"false")+'">'+n+'</button>'}pager.innerHTML='<button type="button" data-page="'+(currentPage-1)+'" '+(currentPage===1?"disabled":"")+' aria-label="Попередня сторінка">‹</button>'+buttons+'<button type="button" data-page="'+(currentPage+1)+'" '+(currentPage===maxPage?"disabled":"")+' aria-label="Наступна сторінка">›</button>'}function showProductDialog(){const backdrop=document.createElement("div");backdrop.className="product-modal-backdrop";backdrop.addEventListener("click",closeProductDialog);document.body.appendChild(backdrop);pDialog.classList.add("product-modal-open");pDialog.setAttribute("open","");document.body.classList.add("product-modal-visible")}
 function closeProductDialog(){pDialog.classList.remove("product-modal-open");pDialog.removeAttribute("open");document.body.classList.remove("product-modal-visible");document.querySelectorAll(".product-modal-backdrop").forEach(x=>x.remove())}
 function articleSlug(p){return String(p.sku||p.name||p.title||p.id).trim().replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"")||String(p.id)}
 function photoViewerUrl(p,index=0){return "/photo.html?product="+encodeURIComponent(p.id)+"&article="+encodeURIComponent(articleSlug(p))+"&photo="+encodeURIComponent(index)}
@@ -1983,7 +2000,18 @@ document.querySelector(".application-done").addEventListener("click",()=>{aDialo
 document.querySelector("#menu").addEventListener("click",()=>document.querySelector("#nav").classList.toggle("open"));
 document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>document.querySelector("#nav").classList.remove("open")));
 const yearNode=document.querySelector("#year");if(yearNode)yearNode.textContent=new Date().getFullYear();
-renderFilters();render();const q=new URLSearchParams(location.search).get("product");if(q)openProduct(q,false);
+function setupCatalogFacets(){
+const brandSelect=document.querySelector("#brand-filter"),capacitySelect=document.querySelector("#capacity-filter"),resetButton=document.querySelector("#reset-product-filters");
+const powerBanks=products.filter(p=>categoryKey(p)==="powerbank");
+const brands=[...new Set(powerBanks.map(p=>String(p.brand||"").trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"uk"));
+for(const brand of brands){const option=document.createElement("option");option.value=brand;option.textContent=brand;brandSelect.append(option)}
+const capacities=[...new Set(powerBanks.map(capacityOf).filter(value=>value>0))].sort((a,b)=>a-b);
+for(const capacity of capacities){const option=document.createElement("option");option.value=String(capacity);option.textContent=capacity.toLocaleString("uk-UA")+" мА·год";capacitySelect.append(option)}
+brandSelect.addEventListener("change",e=>{brandFilter=e.target.value;currentPage=1;render()});
+capacitySelect.addEventListener("change",e=>{capacityFilter=e.target.value;currentPage=1;render()});
+resetButton.addEventListener("click",()=>{brandFilter="";capacityFilter="";brandSelect.value="";capacitySelect.value="";currentPage=1;render()});
+}
+setupCatalogFacets();renderFilters();render();const q=new URLSearchParams(location.search).get("product");if(q)openProduct(q,false);
 window.addEventListener("popstate",()=>{const id=new URLSearchParams(location.search).get("product");if(id)openProduct(id,false);else if(pDialog.open||pDialog.classList.contains("product-modal-open"))closeProductDialog()});
 
 
