@@ -1763,7 +1763,48 @@ section[id],.section[id]{scroll-margin-top:96px}
 .review-status.success{color:var(--yellow)}
 @media(max-width:760px){.reviews{padding-top:70px;padding-bottom:72px}.reviews-layout{grid-template-columns:1fr;gap:30px}.reviews-intro h2{font-size:44px;letter-spacing:-2.5px}.review-form{padding:20px}}
 @media(max-width:520px){.review-form-row{grid-template-columns:1fr;gap:0}.reviews-moderation{margin-top:20px}}
-</style></head>
+</style><style id="hero-original-product-photos">
+.hero-art .logo-stage.hero-product-stage{
+  width:min(100%,540px)!important;height:430px!important;max-height:100%!important;
+  display:grid!important;place-items:center!important;position:relative!important;z-index:2!important;
+  border:0!important;border-radius:0!important;transform:none!important;
+  background:transparent!important;box-shadow:none!important;filter:none!important;
+}
+.hero-products{
+  width:100%;max-width:500px;height:100%;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:12px;align-content:center;
+}
+.hero-product{
+  position:relative;margin:0;min-width:0;min-height:0;overflow:hidden;
+  border:1px solid rgba(125,255,0,.22);border-radius:19px;padding:6px;
+  background:#f4f4ef;box-shadow:0 14px 34px rgba(0,0,0,.48),0 0 23px rgba(125,255,0,.10);
+}
+.hero-product img{
+  display:block;width:100%;height:100%;min-height:0;object-fit:contain;
+  border-radius:13px;background:#f4f4ef;
+}
+.hero-product figcaption{
+  position:absolute;left:11px;bottom:11px;z-index:2;
+  padding:6px 8px;border:1px solid rgba(125,255,0,.35);border-radius:20px;
+  background:rgba(12,15,12,.88);color:#baff77;
+  font:8px var(--mono);letter-spacing:.8px;line-height:1;white-space:nowrap;
+}
+.hero-product-featured{box-shadow:0 16px 42px rgba(0,0,0,.56),0 0 30px rgba(125,255,0,.18)}
+@media(max-width:950px){
+  .hero-art .logo-stage.hero-product-stage{width:min(100%,460px)!important;height:390px!important}
+  .hero-products{max-width:440px;gap:10px}
+}
+@media(max-width:640px){
+  .hero-art{height:350px!important}
+  .hero-art .logo-stage.hero-product-stage{width:min(100%,390px)!important;height:320px!important}
+  .hero-products{max-width:360px;gap:8px}
+  .hero-product{padding:5px;border-radius:15px}
+  .hero-product img{border-radius:10px}
+  .hero-product figcaption{left:8px;bottom:8px;font-size:7px;padding:5px 6px}
+}
+</style>
+</head>
 <body>
 <header class="site-header">
 <a aria-label="PowerMag — головна" class="brand" href="#"><span class="brand-icon"><img alt="" height="30" src="/powermag-mark.svg" width="30"/></span><span>Power<span class="yellow">Mag</span></span></a>
@@ -1786,7 +1827,14 @@ section[id],.section[id]{scroll-margin-top:96px}
 <div aria-label="Фірмовий знак PowerMag" class="hero-art">
 <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
 <span class="art-plus plus-one">+</span><span class="art-plus plus-two">+</span>
-<div class="logo-stage"><div class="big-mark"><img alt="Логотип PowerMag" src="/powermag-mark.svg"/></div></div>
+<div class="logo-stage hero-product-stage" aria-label="Популярні павербанки PowerMag">
+  <div class="hero-products">
+    <figure class="hero-product"><img src="https://mobimag.ua/images/aXRlbXMvNjk0MjAwNzYzNzc1Ni8xLmpwZzoxMDAwOjEwMDA.webp" alt="Оригінальне фото Hoco DB81A Apollo" loading="eager" decoding="async"/><figcaption>DB81A APOLLO</figcaption></figure>
+    <figure class="hero-product hero-product-featured"><img src="https://mobimag.ua/images/aXRlbXMvNjk0MjAwNzYzNTk4MS8xLmpwZzoxMDAwOjEwMDA.webp" alt="Оригінальне фото Hoco DB03 Max" loading="eager" decoding="async"/><figcaption>DB03 MAX</figcaption></figure>
+    <figure class="hero-product"><img src="https://mobimag.ua/images/aXRlbXMvNjk0MjAwNzY0NzAyMS8xLmpwZzoxMDAwOjEwMDA=.webp" alt="Оригінальне фото Hoco DB160 Astrum" loading="eager" decoding="async"/><figcaption>DB160 ASTRUM</figcaption></figure>
+    <figure class="hero-product"><img src="https://mobimag.ua/images/aXRlbXMvNjk0MjAwNzY0NzAxNC8xLmpwZzoxMDAwOjEwMDA=.webp" alt="Оригінальне фото Hoco DB82 Aquila" loading="eager" decoding="async"/><figcaption>DB82 AQUILA</figcaption></figure>
+  </div>
+</div>
 <div class="power-tag"><i class="status-dot"></i> ЗАРЯД ПОРУЧ</div>
 <div class="art-label">ПІДГОТУЙСЯ ДО ВІДКЛЮЧЕНЬ <span>↗</span></div>
 </div>
