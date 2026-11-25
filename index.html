@@ -1059,7 +1059,7 @@ footer{padding:25px 6%}
 .catalog-tools{display:grid!important;grid-template-columns:1fr auto;align-items:center;gap:12px}.catalog-tools .filters{grid-column:1/-1;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.catalog-tools .filters button{flex:0 0 auto;white-space:nowrap}.catalog-tools .filters button span{margin-left:6px;opacity:.65;font-size:9px}.product-search{display:flex;align-items:center;gap:9px;width:min(100%,380px);border:1px solid #3a4036;background:#161a15;padding:11px 13px;color:#a7b491}.product-search input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#f3f5ec;font:11px var(--mono)}.product-search input::placeholder{color:#737b6b}.product-photo{position:relative;display:grid;place-items:center;aspect-ratio:1/1;height:auto;overflow:hidden;border-bottom:1px solid #2e352d}.product-photo .product-image{position:absolute;inset:auto;left:50%;top:50%;transform:translate(-50%,-50%);width:76%;height:76%;max-width:250px;max-height:250px;object-fit:contain;background:transparent;filter:drop-shadow(0 15px 18px #000b)}.product-photo .product-label{position:absolute;left:12px;top:12px;z-index:2;background:#171a17d9;border:1px solid #3a4036;padding:7px 9px;border-radius:99px;font:9px var(--mono);color:#c2d79b}.product-photo .photo-arrow{position:absolute;right:12px;bottom:12px}.photo-fallback{display:grid;place-items:center;color:#a6d840;font-size:48px}.product-card{overflow:hidden}.product-brand{display:block;color:#9da58f;font:9px var(--mono);letter-spacing:1.2px;text-transform:uppercase}.detail-visual{position:relative;min-height:390px;overflow:hidden;background:radial-gradient(ellipse at 50% 80%,#7dff0028,transparent 48%),linear-gradient(180deg,#121512,#0b0d0b)}.detail-image{position:absolute;inset:8% 8%;width:84%;height:80%;max-height:none;object-fit:contain;filter:drop-shadow(0 18px 22px #000a)}.detail-thumbs{position:absolute;z-index:3;left:14px;bottom:14px;display:flex;gap:8px}.detail-thumb{width:56px;height:56px;padding:3px;background:#f4f4ef;border:1px solid #555d4a;cursor:pointer}.detail-thumb.active{border-color:#a8e742}.detail-thumb img{width:100%;height:100%;object-fit:contain}.detail-no-photo{display:grid;place-items:center;color:#a6d840;font-size:52px}.page-gap{display:grid;place-items:center;padding:0 4px;color:#abb0a4}@media(max-width:700px){.catalog-tools{grid-template-columns:1fr}.catalog-tools .filters{grid-column:1}.product-search{width:100%}.catalog-tools #product-count{justify-self:start}.detail-visual{min-height:290px}.detail-image{inset:8% 8%;width:84%;height:75%}}\n/* Align product price and cart button in one footer row */\n.product-bottom{padding:0 19px;gap:12px}.product-bottom .product-card-price{margin:0;white-space:nowrap}.product-bottom .apply-button{width:auto;min-width:112px;flex:0 0 auto}\n
 /* Keep the main navigation visible while browsing */
 .site-header{position:sticky;top:0;z-index:20}
-#catalog,#how,#about,#delivery,#faq{scroll-margin-top:70px}
+#catalog,#how,#about,#delivery,#faq,#reviews{scroll-margin-top:70px}
 
 
 </style>
@@ -1737,11 +1737,39 @@ section[id],.section[id]{scroll-margin-top:96px}
 .catalog-filter-reset:hover:not(:disabled){border-color:var(--yellow);color:var(--yellow)}
 .catalog-filter-reset:disabled{opacity:.42;cursor:default}
 @media(max-width:760px){.catalog-extra-filters{margin:-3px 0 18px;gap:8px}.catalog-facet{flex:1;min-width:145px;justify-content:space-between}.catalog-facet select{min-width:0;flex:1}.catalog-filter-reset{width:100%}}
+</style><style id="customer-reviews">
+.reviews{border-top:1px solid var(--line);padding-top:92px;padding-bottom:96px}
+.reviews-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:10%;align-items:start}
+.reviews-intro h2{margin:25px 0 16px;font-size:clamp(38px,5vw,62px);line-height:1.02;letter-spacing:-3px}
+.reviews-intro>p{max-width:390px;color:var(--muted);font-size:12px;line-height:1.85}
+.reviews-moderation{display:flex;align-items:center;gap:10px;margin-top:32px;color:#c5c9bd;font-size:11px}
+.reviews-moderation>span:first-child{width:25px;height:25px;display:grid;place-items:center;border:1px solid #49513f;border-radius:50%;color:var(--yellow)}
+.review-form{padding:26px;border:1px solid #343a31;border-radius:16px;background:#141714}
+.review-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.review-form label{display:block;margin:0 0 17px;color:#d9dbd2;font-size:11px}
+.review-form label>span{color:#8f958a}
+.review-form input:not([type=checkbox]),.review-form select,.review-form textarea{display:block;width:100%;margin-top:8px;padding:13px;border:1px solid #3a4036;border-radius:4px;background:#101310;color:white;font:12px var(--sans);outline:none}
+.review-form input:focus,.review-form select:focus,.review-form textarea:focus{border-color:var(--yellow)}
+.review-form select{cursor:pointer}
+.review-form textarea{resize:vertical;min-height:125px;line-height:1.6}
+.review-form .review-consent{display:flex;align-items:flex-start;gap:10px;line-height:1.6}
+.review-consent input{width:16px;height:16px;flex:0 0 16px;margin:1px 0 0;accent-color:var(--yellow)}
+.review-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.review-submit{width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px 17px;border:1px solid var(--yellow);border-radius:4px;background:var(--yellow);color:#151610;font-size:12px;font-weight:800;cursor:pointer}
+.review-submit:hover{background:#b8ff5c;border-color:#b8ff5c}
+.review-submit:disabled{opacity:.7;cursor:wait}
+.review-submit span{font-size:19px}
+.review-privacy{margin:12px 0 0;color:#858a80;font-size:10px}
+.review-status{min-height:0;margin:0;color:#ff9b87;font-size:11px;line-height:1.6}
+.review-status:not(:empty){margin:0 0 12px}
+.review-status.success{color:var(--yellow)}
+@media(max-width:760px){.reviews{padding-top:70px;padding-bottom:72px}.reviews-layout{grid-template-columns:1fr;gap:30px}.reviews-intro h2{font-size:44px;letter-spacing:-2.5px}.review-form{padding:20px}}
+@media(max-width:520px){.review-form-row{grid-template-columns:1fr;gap:0}.reviews-moderation{margin-top:20px}}
 </style></head>
 <body>
 <header class="site-header">
 <a aria-label="PowerMag — головна" class="brand" href="#"><span class="brand-icon"><img alt="" height="30" src="/powermag-mark.svg" width="30"/></span><span>Power<span class="yellow">Mag</span></span></a>
-<nav id="nav"><a href="#catalog">Каталог <i></i></a><a href="#how">Як замовити</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
+<nav id="nav"><a href="#catalog">Каталог <i></i></a><a href="#how">Як замовити</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a><a href="#reviews">Відгуки</a></nav>
 <button class="cart-trigger" type="button" data-cart-open aria-label="Відкрити кошик"><svg class="cart-trigger-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11h11.2L21 8H6"></path><circle cx="9" cy="19" r="1.4"></circle><circle cx="18" cy="19" r="1.4"></circle></svg><span class="cart-trigger-label">Кошик</span><span id="cart-count" class="cart-count-badge" hidden>0</span></button>
 
 <button aria-label="Відкрити меню" class="menu-button" id="menu"><b></b><b></b></button>
@@ -1865,6 +1893,38 @@ section[id],.section[id]{scroll-margin-top:96px}
 <details><summary>Як підготувати павербанк до відключення?<span>+</span></summary><p>Заряди його, поки є світло, та тримай поруч сумісний кабель. Якщо обираєш магнітну модель, перевір підтримку бездротової зарядки й магнітного кріплення у свого телефона або чохла.</p></details>
 <details><summary>Як замовити? Які умови доставки й оплати?<span>+</span></summary><p>Додай товар у кошик або відкрий його картку й надішли заявку. Менеджер зв’яжеться для підтвердження наявності та замовлення. Доставка здійснюється Новою поштою, оплата — при отриманні або перед відправленням. <a href="/delivery.html">Докладні умови доставки й оплати</a>.</p></details>
 </div>
+</section>
+
+<section class="reviews section" id="reviews" aria-labelledby="reviews-title">
+  <div class="reviews-layout">
+    <div class="reviews-intro">
+      <span class="eyebrow">06 / ВІДГУКИ КЛІЄНТІВ</span>
+      <h2 id="reviews-title">Залиште <span class="yellow">відгук</span></h2>
+      <p>Поділіться враженням про покупку в PowerMag — це допоможе іншим обрати потрібний товар.</p>
+      <div class="reviews-moderation"><span aria-hidden="true">✓</span><span>Кожен відгук перевіряємо перед публікацією.</span></div>
+    </div>
+    <form class="review-form" id="review-form">
+      <div class="review-form-row">
+        <label>Ваше ім’я<input name="name" autocomplete="name" maxlength="60" minlength="2" placeholder="Як до вас звертатися?" required></label>
+        <label>Товар <span>(необов’язково)</span><input name="product" maxlength="100" placeholder="Наприклад, павербанк"></label>
+      </div>
+      <label>Оцінка
+        <select name="rating" required>
+          <option value="5" selected>★★★★★ — 5 з 5</option>
+          <option value="4">★★★★☆ — 4 з 5</option>
+          <option value="3">★★★☆☆ — 3 з 5</option>
+          <option value="2">★★☆☆☆ — 2 з 5</option>
+          <option value="1">★☆☆☆☆ — 1 з 5</option>
+        </select>
+      </label>
+      <label>Ваш відгук<textarea name="review" rows="5" maxlength="1200" minlength="8" placeholder="Розкажіть про товар, обслуговування чи доставку…" required></textarea></label>
+      <label class="review-consent"><input type="checkbox" name="consent" required><span>Даю згоду на публікацію мого відгуку на сайті.</span></label>
+      <label class="review-honeypot" aria-hidden="true">Ваш сайт<input name="website" tabindex="-1" autocomplete="off"></label>
+      <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
+      <button class="review-submit" type="submit">Надіслати відгук <span aria-hidden="true">↗</span></button>
+      <p class="review-privacy">Телефон та інші контактні дані не потрібні.</p>
+    </form>
+  </div>
 </section>
 
 </main>
@@ -2020,6 +2080,8 @@ setupCatalogFacets();renderFilters();render();const q=new URLSearchParams(locati
 window.addEventListener("popstate",()=>{const id=new URLSearchParams(location.search).get("product");if(id)openProduct(id,false);else if(pDialog.open||pDialog.classList.contains("product-modal-open"))closeProductDialog()});
 
 
+
+document.querySelector("#review-form").addEventListener("submit",async event=>{event.preventDefault();const form=event.currentTarget,data=new FormData(form),status=document.querySelector("#review-status"),button=form.querySelector('[type="submit"]');if(data.get("website"))return;status.classList.remove("success");status.textContent="";button.disabled=true;button.dataset.originalText=button.innerText;button.innerText="Надсилаємо…";try{const response=await fetch(ORDER_API+"/api/review",{method:"POST",headers:{"content-type":"text/plain;charset=UTF-8"},body:JSON.stringify({name:String(data.get("name")||"").trim(),product:String(data.get("product")||"").trim(),rating:Number(data.get("rating")),review:String(data.get("review")||"").trim(),consent:data.has("consent"),website:String(data.get("website")||"")})});const result=await response.json().catch(()=>({}));if(!response.ok||!result.ok){const messages={rate_limited:"Забагато спроб. Спробуй надіслати відгук трохи пізніше.",not_configured:"Форма тимчасово недоступна. Напиши нам у Telegram.",telegram_delivery_failed:"Не вдалося надіслати відгук. Спробуй ще раз.",telegram_unavailable:"Сервер тимчасово недоступний. Спробуй пізніше.",invalid_review:"Перевір ім’я, оцінку та текст відгуку."};status.textContent=messages[result.code]||"Не вдалося надіслати відгук. Спробуй ще раз.";return}form.reset();status.classList.add("success");status.textContent="Дякуємо! Відгук надіслано на перевірку. Після модерації ми зможемо опублікувати його на сайті."}catch(error){status.textContent="Сервер тимчасово недоступний. Спробуй пізніше."}finally{button.disabled=false;button.innerText=button.dataset.originalText||"Надіслати відгук ↗";delete button.dataset.originalText}});
 </script>
 
 

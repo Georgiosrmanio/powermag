@@ -72,7 +72,7 @@ const server = http.createServer(async (req, res) => {
     return reply(res, 200, { ok: true, service: "powermag-orders-api" });
   }
 
-  if (req.method === "OPTIONS" && path === "/api/order") {
+  if (req.method === "OPTIONS" && (path === "/api/order" || path === "/api/review")) {
     if (origin !== ALLOWED_ORIGIN) return reply(res, 403, { ok: false });
     res.writeHead(204, {
       "access-control-allow-origin": ALLOWED_ORIGIN,
@@ -84,7 +84,7 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
-  if (req.method !== "POST" || path !== "/api/order") {
+  if (req.method !== "POST" || (path !== "/api/order" && path !== "/api/review")) {
     return reply(res, 404, { ok: false, code: "not_found" });
   }
   if (origin !== ALLOWED_ORIGIN) return reply(res, 403, { ok: false, code: "origin_not_allowed" });
@@ -98,6 +98,55 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (clean(data.website, 200)) return reply(res, 200, { ok: true }, origin);
+
+  if (path === "/api/review") {
+    const name = clean(data.name, 60);
+    const product = clean(data.product, 100);
+    const review = clean(data.review, 1200);
+    const rating = Number(data.rating);
+    if (name.length < 2 || !Number.isInteger(rating) || rating < 1 || rating > 5 ||
+        review.length < 8 || data.consent !== true) {
+      return reply(res, 400, { ok: false, code: "invalid_review" }, origin);
+    }
+
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (!token || !chatId) return reply(res, 503, { ok: false, code: "not_configured" }, origin);
+
+    const message = [
+      "⭐ Новий відгук — PowerMag (очікує модерації)",
+      "",
+      "Ім’я: " + name,
+      "Оцінка: " + "★".repeat(rating) + "☆".repeat(5 - rating) + " (" + rating + "/5)",
+      ...(product ? ["Товар: " + product] : []),
+      "",
+      "Відгук:",
+      review,
+      "",
+      "Клієнт погодився на публікацію після перевірки."
+    ].join("\n");
+
+    try {
+      const response = await fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: message }),
+        signal: AbortSignal.timeout(10000)
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        console.error("Telegram review delivery failed", { status: response.status, error_code: result.error_code || null });
+        return reply(res, 502, { ok: false, code: "telegram_delivery_failed" }, origin);
+      }
+      return reply(res, 200, { ok: true, status: "pending_moderation" }, origin);
+    } catch (error) {
+      console.error("Telegram review API request failed", {
+        name: typeof error?.name === "string" ? error.name : "Error",
+        code: typeof error?.cause?.code === "string" ? error.cause.code : null
+      });
+      return reply(res, 502, { ok: false, code: "telegram_unavailable" }, origin);
+    }
+  }
 
   const name = clean(data.name, 80);
   const phone = clean(data.phone, 40);
