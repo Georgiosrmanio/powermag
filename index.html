@@ -1062,34 +1062,6 @@ footer{padding:25px 6%}
 #catalog,#how,#about,#delivery,#faq{scroll-margin-top:70px}
 
 
-/* PowerMag review-card demo */
-.reviews-demo{padding:76px 8% 66px;color:#f4f4f1;background-color:#0e100f;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:54px 54px}
-.reviews-demo-inner{max-width:1460px;margin:0 auto}
-.reviews-demo-kicker{display:flex;align-items:center;gap:10px;color:#c8cbc2;font:10px var(--mono);letter-spacing:1.4px}
-.reviews-demo-kicker strong{color:var(--yellow);font-weight:600}
-.reviews-demo-kicker i{width:28px;height:1px;background:#474b43}
-.reviews-demo-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin:14px 0 25px}
-.reviews-demo-title{margin:0;color:#f4f4f1;font-size:clamp(34px,4vw,54px);font-weight:800;line-height:1;letter-spacing:-2.3px}
-.reviews-demo-title span{color:var(--yellow)}
-.reviews-demo-note{max-width:430px;margin:0 0 2px;color:#aeb2a9;font-size:12px;line-height:1.65}
-.reviews-demo-track{display:grid;grid-auto-columns:calc((100% - 42px)/4);grid-auto-flow:column;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:3px 2px 14px}
-.reviews-demo-track::-webkit-scrollbar{display:none}
-.reviews-demo-card{min-height:226px;padding:18px 18px 15px;border:1px solid #e7e8e4;border-radius:17px;background:#fff;color:#1d211b;box-shadow:0 8px 24px #0002;scroll-snap-align:start;display:flex;flex-direction:column}
-.reviews-demo-card-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
-.reviews-demo-avatar{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:50%;background:#edf4e6;color:#5b951f}
-.reviews-demo-avatar svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.reviews-demo-person{display:grid;gap:3px;min-width:0}
-.reviews-demo-person strong{font-size:12px;line-height:1.2;color:#252820}
-.reviews-demo-person span{font-size:10px;color:#8b9087}
-.reviews-demo-badge{margin-left:auto;padding:5px 7px;border-radius:99px;background:#f0f6e8;color:#578d20;font:800 8px var(--mono);letter-spacing:.6px}
-.reviews-demo-stars{display:flex;gap:2px;margin:0 0 10px;color:#efb828;font-size:16px;letter-spacing:.3px}
-.reviews-demo-copy{margin:0;color:#454a41;font-size:12px;line-height:1.55}
-.reviews-demo-foot{margin-top:auto;padding-top:11px;color:#858a81;font:8px var(--mono);letter-spacing:.8px;border-top:1px solid #eff0eb}
-.reviews-demo-controls{display:flex;justify-content:flex-end;gap:8px;margin-top:7px}
-.reviews-demo-controls button{width:34px;height:34px;border:1px solid #42473d;border-radius:50%;background:#171a16;color:#fff;font-size:17px;cursor:pointer;transition:.18s}
-.reviews-demo-controls button:hover{border-color:var(--yellow);color:var(--yellow)}
-@media(max-width:1000px){.reviews-demo-track{grid-auto-columns:calc((100% - 14px)/2)}.reviews-demo{padding-left:6%;padding-right:6%}}
-@media(max-width:640px){.reviews-demo{padding:44px 5% 38px;background-size:42px 42px}.reviews-demo-head{display:block;margin:12px 0 18px}.reviews-demo-title{font-size:36px;letter-spacing:-1.8px}.reviews-demo-note{margin-top:10px;font-size:11px}.reviews-demo-track{grid-auto-columns:82%;gap:10px;margin-right:-5.55vw;padding-bottom:11px}.reviews-demo-card{min-height:204px;padding:16px;border-radius:15px}.reviews-demo-controls{display:none}}
 </style>
 
 
@@ -1769,7 +1741,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 <body>
 <header class="site-header">
 <a aria-label="PowerMag — головна" class="brand" href="#"><span class="brand-icon"><img alt="" height="30" src="/powermag-mark.svg" width="30"/></span><span>Power<span class="yellow">Mag</span></span></a>
-<nav id="nav"><a href="#catalog">Каталог <i></i></a><a href="#reviews">Відгуки</a><a href="#how">Як замовити</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
+<nav id="nav"><a href="#catalog">Каталог <i></i></a><a href="#how">Як замовити</a><a href="#about">Про нас</a><a href="#delivery">Доставка</a><a href="#faq">Питання</a></nav>
 <button class="cart-trigger" type="button" data-cart-open aria-label="Відкрити кошик"><svg class="cart-trigger-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11h11.2L21 8H6"></path><circle cx="9" cy="19" r="1.4"></circle><circle cx="18" cy="19" r="1.4"></circle></svg><span class="cart-trigger-label">Кошик</span><span id="cart-count" class="cart-count-badge" hidden>0</span></button>
 
 <button aria-label="Відкрити меню" class="menu-button" id="menu"><b></b><b></b></button>
@@ -1834,22 +1806,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 </section>
 
 
-<section class="reviews-demo" id="reviews" aria-labelledby="reviews-demo-title">
-  <div class="reviews-demo-inner">
-    <div class="reviews-demo-kicker"><strong>ДЕМО-МАКЕТ</strong><i aria-hidden="true"></i> КАРТКИ ВІДГУКІВ</div>
-    <div class="reviews-demo-head">
-      <h2 class="reviews-demo-title" id="reviews-demo-title">ВІДГУКИ<span>.</span></h2>
-      <p class="reviews-demo-note">Це демонстраційні картки для узгодження вигляду. Тексти не є відгуками реальних покупців і будуть замінені після отримання справжніх відгуків.</p>
-    </div>
-    <div class="reviews-demo-track" id="reviews-demo-track" aria-label="Демонстраційні картки відгуків">
-      <article class="reviews-demo-card"><div class="reviews-demo-card-head"><span class="reviews-demo-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-3.5-.8L4 20l1.5-3.5A7.3 7.3 0 0 1 4 12c0-4.2 3.6-7.5 8-7.5s8 2.8 8 7z"/></svg></span><span class="reviews-demo-person"><strong>Демо-картка 01</strong><span>Текст для заміни</span></span><span class="reviews-demo-badge">DEMO</span></div><div class="reviews-demo-stars" aria-hidden="true">★★★★★</div><p class="reviews-demo-copy">Приклад оформлення відгуку про павербанк. Замініть цей текст на слова реального покупця.</p><div class="reviews-demo-foot">НЕ Є ВІДГУКОМ ПОКУПЦЯ</div></article>
-      <article class="reviews-demo-card"><div class="reviews-demo-card-head"><span class="reviews-demo-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-3.5-.8L4 20l1.5-3.5A7.3 7.3 0 0 1 4 12c0-4.2 3.6-7.5 8-7.5s8 2.8 8 7z"/></svg></span><span class="reviews-demo-person"><strong>Демо-картка 02</strong><span>Текст для заміни</span></span><span class="reviews-demo-badge">DEMO</span></div><div class="reviews-demo-stars" aria-hidden="true">★★★★★</div><p class="reviews-demo-copy">Приклад оформлення відгуку про доставку. Замініть цей текст на слова реального покупця.</p><div class="reviews-demo-foot">НЕ Є ВІДГУКОМ ПОКУПЦЯ</div></article>
-      <article class="reviews-demo-card"><div class="reviews-demo-card-head"><span class="reviews-demo-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-3.5-.8L4 20l1.5-3.5A7.3 7.3 0 0 1 4 12c0-4.2 3.6-7.5 8-7.5s8 2.8 8 7z"/></svg></span><span class="reviews-demo-person"><strong>Демо-картка 03</strong><span>Текст для заміни</span></span><span class="reviews-demo-badge">DEMO</span></div><div class="reviews-demo-stars" aria-hidden="true">★★★★★</div><p class="reviews-demo-copy">Приклад оформлення відгуку про допомогу з вибором. Замініть цей текст на слова реального покупця.</p><div class="reviews-demo-foot">НЕ Є ВІДГУКОМ ПОКУПЦЯ</div></article>
-      <article class="reviews-demo-card"><div class="reviews-demo-card-head"><span class="reviews-demo-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-3.5-.8L4 20l1.5-3.5A7.3 7.3 0 0 1 4 12c0-4.2 3.6-7.5 8-7.5s8 2.8 8 7z"/></svg></span><span class="reviews-demo-person"><strong>Демо-картка 04</strong><span>Текст для заміни</span></span><span class="reviews-demo-badge">DEMO</span></div><div class="reviews-demo-stars" aria-hidden="true">★★★★★</div><p class="reviews-demo-copy">Приклад оформлення короткого відгуку. Замініть цей текст на слова реального покупця.</p><div class="reviews-demo-foot">НЕ Є ВІДГУКОМ ПОКУПЦЯ</div></article>
-    </div>
-    <div class="reviews-demo-controls" aria-label="Керування картками"><button type="button" aria-label="Попередні картки" onclick="document.getElementById('reviews-demo-track').scrollBy({left:-420,behavior:'smooth'})">‹</button><button type="button" aria-label="Наступні картки" onclick="document.getElementById('reviews-demo-track').scrollBy({left:420,behavior:'smooth'})">›</button></div>
-  </div>
-</section>
+
 <section class="how section" id="how">
 <div class="section-top"><span class="eyebrow"><strong>02</strong><i></i> ПРОСТО Й ЗРУЧНО</span></div>
 <h2 class="how-title">ЯК ЗАМОВИТИ</h2>
