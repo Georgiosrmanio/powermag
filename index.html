@@ -1808,6 +1808,63 @@ section[id],.section[id]{scroll-margin-top:96px}
 .hero-art .power-tag{top:22px!important;left:30%!important;bottom:auto!important;z-index:4!important}
 @media(max-width:640px){.hero-art .power-tag{display:none!important}}
 </style>
+<style id="hero-original-photo-composition">
+/* Recompose real catalogue photos into a dark, illuminated hero scene. */
+.hero-art .logo-stage.hero-product-stage{
+  width:min(100%,660px)!important;height:450px!important;max-height:none!important;
+  overflow:visible!important;transform:none!important;border:0!important;border-radius:0!important;
+  background:radial-gradient(ellipse at 52% 78%,rgba(125,255,0,.11),transparent 43%)!important;
+  box-shadow:none!important;
+}
+.hero-products{
+  position:relative!important;display:block!important;width:100%!important;max-width:660px!important;height:100%!important;
+  background:radial-gradient(ellipse at 50% 88%,rgba(190,255,99,.10),transparent 40%);
+}
+.hero-products:before{
+  content:"";position:absolute;left:5%;right:4%;bottom:13%;height:1px;z-index:0;
+  background:linear-gradient(90deg,transparent,rgba(125,255,0,.12),#7dff00,rgba(125,255,0,.18),transparent);
+  box-shadow:0 0 18px 3px rgba(125,255,0,.32);
+}
+.hero-products:after{
+  content:"";position:absolute;left:9%;right:8%;bottom:5%;height:15%;z-index:0;
+  background:radial-gradient(ellipse,rgba(125,255,0,.13),transparent 68%);filter:blur(8px);
+}
+.hero-product{
+  position:absolute!important;overflow:visible!important;margin:0!important;padding:0!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+.hero-product:nth-child(1){left:0;bottom:12%;width:37%;height:66%;z-index:1}
+.hero-product:nth-child(2){left:17%;bottom:0;width:62%;height:100%;z-index:3}
+.hero-product:nth-child(3){left:52%;bottom:4%;width:39%;height:72%;z-index:4}
+.hero-product:nth-child(4){right:-1%;bottom:5%;width:35%;height:81%;z-index:2}
+.hero-product img{
+  position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;
+  min-height:0!important;object-fit:contain!important;border:0!important;border-radius:0!important;
+  background:transparent!important;mix-blend-mode:multiply;filter:contrast(1.12) brightness(1.1);
+}
+.hero-product figcaption{
+  left:50%!important;bottom:3%!important;transform:translateX(-50%);
+  white-space:nowrap;padding:5px 8px!important;border-color:#7dff0070!important;
+  background:rgba(12,15,12,.88)!important;color:#baff77!important;z-index:5;
+}
+.hero-product-featured{filter:none}
+.hero-art .power-tag{z-index:6!important}
+@media(max-width:950px){
+  .hero-art .logo-stage.hero-product-stage{width:min(100%,600px)!important;height:390px!important}
+  .hero-products{max-width:600px!important}
+}
+@media(max-width:640px){
+  .hero-art{height:330px!important}
+  .hero-art .logo-stage.hero-product-stage{width:100%!important;height:320px!important}
+  .hero-products{max-width:100%!important}
+  .hero-product:nth-child(1){left:-2%;bottom:12%;width:42%;height:62%}
+  .hero-product:nth-child(2){left:14%;bottom:0;width:65%;height:100%}
+  .hero-product:nth-child(3){left:50%;bottom:4%;width:42%;height:72%}
+  .hero-product:nth-child(4){right:-5%;bottom:7%;width:40%;height:78%}
+  .hero-product figcaption{font-size:6px!important;padding:4px 5px!important}
+  .hero-art .power-tag{display:none!important}
+}
+</style>
 </head>
 <body>
 <header class="site-header">
