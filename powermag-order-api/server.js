@@ -106,11 +106,15 @@ const server = http.createServer(async (req, res) => {
   const deliveryType = clean(data.deliveryType, 20);
   const city = clean(data.city, 100);
   const destination = clean(data.destination, 180);
+  const paymentMethod = clean(data.paymentMethod, 20);
   const deliveryLabels = { branch: "Відділення", postomat: "Поштомат", courier: "Кур’єр" };
-  const hasDelivery = Boolean(deliveryType || city || destination);
+  const paymentLabels = {
+    cod: "Оплата при отриманні (накладений платіж)",
+    prepay: "Перед відправленням (передплата за реквізитами)"
+  };
   const items = normalizeItems(data.items);
-  if (name.length < 2 || digits.length < 9 || !items ||
-      (hasDelivery && (!deliveryLabels[deliveryType] || city.length < 2 || destination.length < 2))) {
+  if (name.length < 2 || digits.length < 9 || !items || !deliveryLabels[deliveryType] ||
+      city.length < 2 || destination.length < 2 || !paymentLabels[paymentMethod]) {
     return reply(res, 400, { ok: false, code: "invalid_order" }, origin);
   }
 
@@ -127,12 +131,11 @@ const server = http.createServer(async (req, res) => {
     "",
     "Ім’я: " + name,
     "Телефон: " + phone,
-    ...(hasDelivery ? [
-      "",
-      "Доставка: Нова пошта — " + deliveryLabels[deliveryType],
-      "Населений пункт: " + city,
-      "Відділення / адреса: " + destination
-    ] : []),
+    "",
+    "Доставка: Нова пошта — " + deliveryLabels[deliveryType],
+    "Населений пункт: " + city,
+    "Відділення / адреса: " + destination,
+    "Оплата: " + paymentLabels[paymentMethod],
     "",
     "Замовлення:",
     ...itemLines,
