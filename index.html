@@ -1805,7 +1805,7 @@ section[id],.section[id]{scroll-margin-top:96px}
 }
 </style>
 <style id="hero-product-tag-position">
-.hero-art .power-tag{top:auto!important;right:3%!important;left:auto!important;bottom:-5px!important;z-index:6!important}
+.hero-art .power-tag{top:auto!important;right:auto!important;left:10%!important;bottom:-5px!important;z-index:6!important}
 @media(max-width:640px){.hero-art .power-tag{display:none!important}}
 </style>
 <style id="hero-original-photo-composition">
@@ -1864,6 +1864,28 @@ section[id],.section[id]{scroll-margin-top:96px}
   .hero-product figcaption{font-size:6px!important;padding:4px 5px!important}
   .hero-art .power-tag{display:none!important}
 }
+</style>
+<style id="hero-polish">
+@keyframes powerbank-float{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.hero-product img{transition:filter .35s ease,translate .35s ease}
+@media(prefers-reduced-motion:no-preference){
+  .hero-product img{animation:powerbank-float 5.5s ease-in-out infinite}
+  .hero-product:nth-child(2) img{animation-delay:-1.5s}
+  .hero-product:nth-child(3) img{animation-delay:-3s}
+  .hero-product:nth-child(4) img{animation-delay:-.75s}
+}
+@media(hover:hover){
+  .hero-product:hover img{animation-play-state:paused;translate:0 -8px;filter:drop-shadow(0 15px 20px rgba(0,0,0,.58)) drop-shadow(0 0 13px rgba(125,255,0,.34))}
+}
+@media(max-width:640px){
+  .hero-art{height:350px!important}
+  .hero-art .logo-stage.hero-product-stage{height:330px!important}
+  .hero-products{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:0!important}
+  .hero-product,.hero-product:nth-child(n){position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;width:auto!important;height:auto!important;z-index:auto!important}
+  .hero-product figcaption{left:50%!important;bottom:4%!important;font-size:7px!important;padding:4px 6px!important}
+  .hero-products:before{left:13%;right:13%;bottom:5%;opacity:.75}
+}
+@media(prefers-reduced-motion:reduce){.hero-product img{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
