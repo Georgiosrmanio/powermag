@@ -1763,12 +1763,29 @@ section[id],.section[id]{scroll-margin-top:96px}
 .review-status.success{color:var(--yellow)}
 @media(max-width:760px){.reviews{padding-top:70px;padding-bottom:72px}.reviews-layout{grid-template-columns:1fr;gap:30px}.reviews-intro h2{font-size:44px;letter-spacing:-2.5px}.review-form{padding:20px}}
 @media(max-width:520px){.review-form-row{grid-template-columns:1fr;gap:0}.reviews-moderation{margin-top:20px}}
-</style><style id="hero-brand-mark-restore">
-.hero-art .hero-mark-stage{width:min(78vw,380px)!important;height:380px!important;display:grid!important;place-items:center!important;position:relative!important;z-index:2!important;overflow:visible!important;border:0!important;border-radius:0!important;transform:none!important;background:radial-gradient(ellipse at center,rgba(125,255,0,.12),transparent 70%)!important;box-shadow:none!important}
-.hero-art .hero-mark-stage img{display:block!important;width:82%!important;height:82%!important;object-fit:contain!important;filter:drop-shadow(0 0 18px rgba(125,255,0,.22))!important}
-@media(min-width:1550px){.hero-art{height:560px!important;transform:none!important}.hero-art .hero-mark-stage{width:440px!important;height:440px!important}}
-@media(max-width:950px){.hero-art .hero-mark-stage{width:min(78vw,350px)!important;height:350px!important}}
-@media(max-width:640px){.hero-art .hero-mark-stage{width:min(72vw,290px)!important;height:290px!important}}
+</style><style id="hero-black-friday-visual">
+.hero-art{overflow:visible!important}
+.hero-art .bf-products-visual{position:relative;width:100%;height:100%;min-height:430px;isolation:isolate}
+.bf-products-visual:before{content:"";position:absolute;left:8%;right:3%;top:8%;bottom:11%;border:1px solid rgba(125,255,0,.12);border-radius:50%;transform:rotate(-19deg);pointer-events:none}
+.bf-products-visual:after{content:"";position:absolute;left:8%;right:3%;top:24%;bottom:18%;border:1px solid rgba(210,224,195,.06);border-radius:50%;transform:rotate(13deg);pointer-events:none}
+.bf-floor{position:absolute;left:0;right:0;bottom:17%;height:1px;background:linear-gradient(90deg,transparent,rgba(125,255,0,.48),transparent);box-shadow:0 0 24px rgba(125,255,0,.22)}
+.bf-unit{position:absolute;bottom:18%;display:flex;flex-direction:column;align-items:center;gap:9px;z-index:2}
+.bf-unit img{display:block;width:100%;height:calc(100% - 25px);min-height:0;object-fit:contain;filter:drop-shadow(0 20px 20px rgba(0,0,0,.48))}
+.bf-unit span{font:8px var(--mono);letter-spacing:.55px;white-space:nowrap;color:#dfe6d8;background:rgba(13,16,13,.9);border:1px solid rgba(125,255,0,.48);border-radius:20px;padding:6px 9px}
+.bf-db81{left:0;width:25%;height:66%;z-index:1}
+.bf-db160{left:50%;width:24%;height:72%;z-index:3}
+.bf-db82{right:0;width:23%;height:68%;z-index:2}
+.bf-db03{left:23%;width:36%;height:94%;bottom:16%;z-index:4}
+.bf-db03 img{filter:drop-shadow(0 22px 26px rgba(0,0,0,.52))}
+.bf-sale-stamp{position:absolute;right:1%;top:4%;z-index:6;width:102px;height:102px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;background:#7DFF00;color:#11160b;box-shadow:0 8px 30px rgba(125,255,0,.18);transform:rotate(8deg)}
+.bf-sale-stamp:before{content:"";position:absolute;inset:6px;border:1px solid rgba(17,22,11,.4);border-radius:50%}
+.bf-sale-stamp small,.bf-sale-stamp i{font:7px var(--mono);letter-spacing:1px;font-style:normal}
+.bf-sale-stamp strong{font-size:14px;line-height:1.02;letter-spacing:-.3px}
+.hero-art>.art-label{display:none!important}
+.hero-art .power-tag{z-index:7;left:0;bottom:4%}
+@media(min-width:1550px){.hero-art{height:560px!important;transform:none!important}.hero-art .bf-products-visual{min-height:500px}}
+@media(max-width:950px){.hero-art .bf-products-visual{min-height:350px}.bf-sale-stamp{width:82px;height:82px}.bf-sale-stamp strong{font-size:11px}}
+@media(max-width:640px){.hero-art{height:330px!important}.hero-art .bf-products-visual{height:100%;min-height:300px}.bf-unit{bottom:18%;gap:6px}.bf-unit span{font-size:6px;padding:5px 6px;letter-spacing:0}.bf-db81{width:25%;height:61%}.bf-db160{width:24%;height:63%;left:50%}.bf-db82{width:23%;height:59%}.bf-db03{width:36%;height:82%;bottom:19%;left:22%}.bf-sale-stamp{width:68px;height:68px;right:0;top:1%}.bf-sale-stamp small,.bf-sale-stamp i{font-size:5px}.bf-sale-stamp strong{font-size:9px}.hero-art .power-tag{font-size:7px;bottom:0}}
 </style>
 </head>
 <body>
@@ -1783,19 +1800,26 @@ section[id],.section[id]{scroll-margin-top:96px}
 <section class="hero">
 <div class="hero-grid"></div>
 <div class="hero-copy">
-<div class="eyebrow"><i class="status-dot"></i> ІНТЕРНЕТ-МАГАЗИН ДЛЯ БЛЕКАУТУ</div>
-<h1>Заряди завчасно.<br/><span>Май запас.<br/>Будь на зв’язку.</span></h1>
-<div class="hero-offer"><span>У нас є</span><a href="#catalog"><i aria-hidden="true">🔋</i> ПАВЕРБАНКИ</a></div>
-<p>Павербанки, безперебійники для роутера та все для автономності вдома й у дорозі. Доставка по Україні, оплата при отриманні або перед відправленням.</p>
-<div class="hero-actions"><a class="button" href="#catalog">Обрати товар <span>→</span></a><a class="button secondary" href="#how">Як замовити</a></div>
-<div class="hero-foot"><i></i> ЗАРЯДИ ЗАВЧАСНО — МАЙ ЕНЕРГІЮ ПРО ЗАПАС</div>
+<div class="eyebrow"><i class="status-dot"></i> BLACK FRIDAY • POWERMAG</div>
+<h1>Чорна<br/>п’ятниця.<br/><span>Заряджайся<br/>вигідніше.</span></h1>
+<div class="hero-offer"><span>Знижки</span><a href="#catalog"><i aria-hidden="true">↘</i> НА ВИБРАНІ МОДЕЛІ</a></div>
+<p>Спеціальні пропозиції на павербанки та зарядні рішення. Доставка по Україні й зручна оплата при отриманні.</p>
+<div class="hero-actions"><a class="button" href="#catalog">Переглянути знижки <span>→</span></a><a class="button secondary" href="#how">Як замовити</a></div>
+<div class="hero-foot"><i></i> BLACK FRIDAY — ВИГІДНИЙ ЧАС ПОПОВНИТИ ЗАПАС</div>
 </div>
-<div aria-label="Фірмовий знак PowerMag" class="hero-art">
+<div aria-label="Добірка павербанків до Black Friday" class="hero-art">
 <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
 <span class="art-plus plus-one">+</span><span class="art-plus plus-two">+</span>
-<div class="logo-stage hero-mark-stage" aria-label="Фірмовий знак PowerMag"><img src="/powermag-mark.svg" alt="Логотип PowerMag" width="360" height="360"/></div>
+<div class="bf-products-visual" aria-label="Оригінальні павербанки з каталогу PowerMag">
+  <div class="bf-floor"></div>
+  <div class="bf-unit bf-db81"><img src="/hero-originals/db81a.webp" alt="Павербанк Hoco DB81A"/><span>DB81A APOLLO</span></div>
+  <div class="bf-unit bf-db160"><img src="/hero-originals/db160.webp" alt="Павербанк Hoco DB160"/><span>DB160 ASTRUM</span></div>
+  <div class="bf-unit bf-db82"><img src="/hero-originals/db82.webp" alt="Павербанк Hoco DB82"/><span>DB82 AQUILA</span></div>
+  <div class="bf-unit bf-db03"><img src="/hero-originals/db03-max.webp" alt="Павербанк Hoco DB03 Max"/><span>DB03 MAX</span></div>
+  <div class="bf-sale-stamp"><small>POWER MAG</small><strong>BLACK<br/>FRIDAY</strong><i>ЗНИЖКИ</i></div>
+</div>
 <div class="power-tag"><i class="status-dot"></i> ЗАРЯД ПОРУЧ</div>
-<div class="art-label">ПІДГОТУЙСЯ ДО ВІДКЛЮЧЕНЬ <span>↗</span></div>
+<div class="art-label">BLACK FRIDAY <span>↗</span></div>
 </div>
 <div class="hero-caption-row" aria-label="Гасло PowerMag"><div class="hero-foot"><i></i> ЗАРЯДИ ЗАВЧАСНО — МАЙ ЕНЕРГІЮ ПРО ЗАПАС</div><div class="art-label">ПІДГОТУЙСЯ ДО ВІДКЛЮЧЕНЬ <span>↗</span></div></div>
 <div class="hero-benefits" aria-label="Переваги замовлення">
